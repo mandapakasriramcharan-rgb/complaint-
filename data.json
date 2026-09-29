@@ -1,0 +1,232 @@
+{
+  "users": [
+    {
+      "id": "HOST-1",
+      "name": "Host Admin",
+      "username": "admin@routewise.com",
+      "email": "admin@routewise.com",
+      "phone": "",
+      "password": "admin123",
+      "role": "admin",
+      "isHost": true,
+      "createdAt": "2026-09-28T13:56:28.983Z"
+    },
+    {
+      "id": "USR-MUMP8G05-3L2A3",
+      "name": "Mandapaka Charan",
+      "email": "mandapakaesriramcharan@gmail.com",
+      "phone": "7075629555",
+      "password": "!erdnzZNy!nu2Bk",
+      "role": "student",
+      "adminAccessStatus": "pending",
+      "createdAt": "2026-09-29T13:15:20.453Z"
+    },
+    {
+      "id": "USR-MUMP97F8-9S0L0",
+      "name": "Charan",
+      "email": "mandapakaeesriramcharan@gmail.com",
+      "phone": "7075629555",
+      "password": "!erdnzZNy!nu2Bk",
+      "role": "student",
+      "adminAccessStatus": "pending",
+      "createdAt": "2026-09-29T13:15:55.988Z"
+    },
+    {
+      "id": "USR-MUMSMHIT-R69AI",
+      "name": "Mandapaka Charan",
+      "email": "mandapakasriramcharan@gmail.com",
+      "phone": "7075629555",
+      "password": "U4@sDN6JwMshF4q",
+      "role": "student",
+      "adminAccessStatus": "pending",
+      "createdAt": "2026-09-29T14:50:14.453Z"
+    }
+  ],
+  "complaints": [
+    {
+      "id": "REAL-APP-TEST-002",
+      "reference": "REAL-APP-TEST-002",
+      "userId": "USER-REAL-2",
+      "studentName": "Test User 2",
+      "studentEmail": "test2@example.com",
+      "category": "Safety concern",
+      "priority": "Urgent",
+      "route": "CB-101 � North Campus",
+      "incidentAt": "2026-09-29T10:05:00.000Z",
+      "location": "Main gate",
+      "description": "Real app-to-Supabase verification",
+      "status": "New",
+      "assignedTeam": "",
+      "resolutionRemarks": "",
+      "attachment": null
+    },
+    {
+      "id": "REAL-TEST-001",
+      "reference": "REAL-TEST-001",
+      "userId": "USER-REAL",
+      "studentName": "Real User",
+      "studentEmail": "real@example.com",
+      "category": "Safety concern",
+      "priority": "Urgent",
+      "route": "CB-101 � North Campus",
+      "incidentAt": "2026-09-29T10:00:00.000Z",
+      "location": "Main gate",
+      "description": "Testing real Supabase connection",
+      "status": "New",
+      "assignedTeam": "",
+      "resolutionRemarks": "",
+      "attachment": null
+    },
+    {
+      "id": "TEST-001",
+      "reference": "TEST-001",
+      "userId": "USER-TEST",
+      "studentName": "Test User",
+      "studentEmail": "test@example.com",
+      "category": "Safety concern",
+      "priority": "Urgent",
+      "route": "CB-101 � North Campus",
+      "incidentAt": "2026-09-29T10:00:00.000Z",
+      "location": "Main gate",
+      "description": "Test complaint for Supabase verification",
+      "status": "New",
+      "assignedTeam": "",
+      "resolutionRemarks": "",
+      "attachment": null
+    },
+    {
+      "id": "RW-2026-003",
+      "reference": "RW-2026-003",
+      "userId": "USR-MUMSMHIT-R69AI",
+      "studentName": "Mandapaka Charan",
+      "studentEmail": "mandapakasriramcharan@gmail.com",
+      "category": "Late arrival",
+      "priority": "Low",
+      "route": "CB-101 · North Campus",
+      "incidentAt": "2026-09-29T14:50:00.000Z",
+      "location": "bus stop",
+      "description": "the yehbachhhadhfhadkajdkai",
+      "attachment": null,
+      "status": "New",
+      "assignedTeam": "",
+      "resolutionRemarks": "",
+      "createdAt": "2026-09-29T14:50:40.599Z",
+      "updatedAt": "2026-09-29T14:50:40.599Z",
+      "dueAt": "2026-10-01T14:50:40.599Z",
+      "escalated": false,
+      "isDemo": false,
+      "aiAnalysis": {
+        "category": "Other",
+        "priority": "Low",
+        "summary": "Other issue reported with low priority: the yehbachhhadhfhadkajdkai"
+      },
+      "timeline": [
+        {
+          "type": "created",
+          "title": "Complaint submitted",
+          "description": "Complaint was successfully received by RouteWise.",
+          "at": "2026-09-29T14:50:40.600Z"
+        }
+      ]
+    },
+    {
+      "id": "RW-2026-002",
+      "reference": "RW-2026-002",
+      "userId": "HOST-1",
+      "studentName": "Host Admin",
+      "studentEmail": "host@gmail.com",
+      "category": "Route or stop issue",
+      "priority": "Medium",
+      "route": "CB-101 · North Campus",
+      "incidentAt": "2026-09-29T13:18:00.000Z",
+      "location": "back gate",
+      "description": "jahjakhfbABFAbhfkjAHCa",
+      "attachment": null,
+      "status": "New",
+      "assignedTeam": "",
+      "resolutionRemarks": "",
+      "createdAt": "2026-09-29T13:18:25.348Z",
+      "updatedAt": "2026-09-29T13:18:25.348Z",
+      "dueAt": "2026-09-30T13:18:25.348Z",
+      "escalated": false,
+      "isDemo": false,
+      "aiAnalysis": {
+        "category": "Other",
+        "priority": "Low",
+        "summary": "Other issue reported with low priority: jahjakhfbABFAbhfkjAHCa"
+      },
+      "timeline": [
+        {
+          "type": "created",
+          "title": "Complaint submitted",
+          "description": "Complaint was successfully received by RouteWise.",
+          "at": "2026-09-29T13:18:25.349Z"
+        }
+      ]
+    },
+    {
+      "id": "RW-2026-001",
+      "reference": "RW-2026-001",
+      "userId": "USR-MUMP97F8-9S0L0",
+      "studentName": "Charan",
+      "studentEmail": "mandapakaeesriramcharan@gmail.com",
+      "category": "Overcrowding",
+      "priority": "Medium",
+      "route": "CB-101 · North Campus",
+      "incidentAt": "2026-09-29T13:16:00.000Z",
+      "location": "main gate",
+      "description": "hwdbhbwfihwdifhwfjiwfjoiwjfowdjfiwbhfiwbfuwhfwhihqi",
+      "attachment": null,
+      "status": "New",
+      "assignedTeam": "",
+      "resolutionRemarks": "",
+      "createdAt": "2026-09-29T13:17:05.404Z",
+      "updatedAt": "2026-09-29T13:17:05.404Z",
+      "dueAt": "2026-09-30T13:17:05.404Z",
+      "escalated": false,
+      "isDemo": false,
+      "aiAnalysis": {
+        "category": "Other",
+        "priority": "Low",
+        "summary": "Other issue reported with low priority: hwdbhbwfihwdifhwfjiwfjoiwjfowdjfiwbhfiwbfuwhfwhihqi"
+      },
+      "timeline": [
+        {
+          "type": "created",
+          "title": "Complaint submitted",
+          "description": "Complaint was successfully received by RouteWise.",
+          "at": "2026-09-29T13:17:05.406Z"
+        }
+      ]
+    }
+  ],
+  "notifications": [
+    {
+      "id": "NT-179069344061434nk",
+      "userId": "USR-MUMSMHIT-R69AI",
+      "title": "Complaint submitted",
+      "message": "Your complaint RW-2026-003 has been received.",
+      "complaintId": "RW-2026-003",
+      "read": false,
+      "createdAt": "2026-09-29T14:50:40.614Z"
+    },
+    {
+      "id": "NT-1790687905358s9dk",
+      "userId": "HOST-1",
+      "title": "Complaint submitted",
+      "message": "Your complaint RW-2026-002 has been received.",
+      "complaintId": "RW-2026-002",
+      "read": true,
+      "createdAt": "2026-09-29T13:18:25.358Z"
+    },
+    {
+      "id": "NT-1790687825422rs47",
+      "userId": "USR-MUMP97F8-9S0L0",
+      "title": "Complaint submitted",
+      "message": "Your complaint RW-2026-001 has been received.",
+      "complaintId": "RW-2026-001",
+      "read": false,
+      "createdAt": "2026-09-29T13:17:05.422Z"
+    }
+  ]
+}

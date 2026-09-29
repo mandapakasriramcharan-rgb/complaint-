@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Administrator sign-in for RouteWise transport operations.">
+  <title>Admin Sign In | RouteWise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="landing-page" data-page="admin-login">
+  <main class="auth-page-shell">
+    <section class="auth-modal" aria-labelledby="adminLoginTitle">
+      <div class="auth-header">
+        <div>
+          <span class="eyebrow">ROUTEWISE ADMINISTRATION</span>
+          <h1 id="adminLoginTitle">Admin sign in</h1>
+        </div>
+        <a class="btn btn-ghost btn-small" href="index.html">Home</a>
+      </div>
+      <p class="auth-subtitle">Sign in with your administrator email and password.</p>
+      <form id="adminLoginForm" novalidate>
+        <div class="form-group">
+          <label for="adminLoginEmail">Admin email</label>
+          <input type="email" id="adminLoginEmail" name="email" autocomplete="username" required>
+        </div>
+        <div class="form-group">
+          <label for="adminLoginPassword">Password</label>
+          <input type="password" id="adminLoginPassword" name="password" autocomplete="current-password" required>
+        </div>
+        <p class="form-message" id="adminLoginMessage" role="status" aria-live="polite"></p>
+        <button class="btn btn-primary btn-full" type="submit">Sign in to admin</button>
+      </form>
+      <p class="field-help">Use the same server address on each device. On another device, use this computer's network address instead of localhost.</p>
+    </section>
+  </main>
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+</body>
+</html>

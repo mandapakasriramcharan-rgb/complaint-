@@ -1,0 +1,1203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="description"
+    content="RouteWise student dashboard - track and manage campus transport complaints"
+  >
+
+  <meta name="theme-color" content="#4138c2">
+
+  <title>Student Dashboard | RouteWise</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Master styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Dashboard-specific styles -->
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+</head>
+
+
+<body
+  class="app-page"
+  data-page="dashboard"
+>
+
+
+  <!-- =========================================================
+       APPLICATION SHELL
+       ========================================================= -->
+
+  <div class="app-shell">
+
+
+    <!-- =======================================================
+         SIDEBAR
+         ======================================================= -->
+
+    <aside
+      class="sidebar"
+      id="sidebar"
+      aria-label="Student navigation"
+    >
+
+      <!-- Brand -->
+
+      <div class="sidebar-brand">
+
+        <a
+          href="dashboard.html"
+          class="brand"
+          aria-label="RouteWise Dashboard"
+        >
+
+          <span
+            class="brand-mark"
+            aria-hidden="true"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+
+          <span class="brand-text">
+
+            <strong>RouteWise</strong>
+
+            <small>
+              Campus Mobility
+            </small>
+
+          </span>
+
+        </a>
+
+      </div>
+
+
+      <!-- Navigation -->
+
+      <nav class="sidebar-nav">
+
+        <a
+          href="dashboard.html"
+          class="active"
+        >
+          <span aria-hidden="true">⌂</span>
+          <span>Overview</span>
+        </a>
+
+
+        <a href="complaint.html">
+          <span aria-hidden="true">+</span>
+          <span>New complaint</span>
+        </a>
+
+
+      </nav>
+
+
+      <!-- Spacer -->
+
+      <div class="sidebar-spacer"></div>
+
+
+      <!-- Theme -->
+
+      <div class="sidebar-theme">
+
+        <label
+          for="themeSelect"
+          class="sidebar-section-label"
+        >
+          Appearance
+        </label>
+
+        <select
+          id="themeSelect"
+          data-theme-select
+          aria-label="Choose appearance"
+        >
+
+          <option value="light">
+            Light
+          </option>
+
+          <option value="dark">
+            Dark
+          </option>
+
+          <option value="blue">
+            Blue
+          </option>
+
+          <option value="green">
+            Green
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- Account -->
+
+      <div class="sidebar-account">
+
+        <div
+          class="account-mini"
+          id="sidebarAccount"
+        >
+
+          <div
+            class="account-avatar"
+            id="accountAvatar"
+          >
+            U
+          </div>
+
+          <div class="account-info">
+
+            <strong id="sidebarUserName">
+              Student
+            </strong>
+
+            <span id="sidebarUserEmail">
+              Student portal
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="sidebar-logout"
+          id="logoutBtn"
+        >
+          <span aria-hidden="true">↪</span>
+          Sign out
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =======================================================
+         MAIN APPLICATION
+         ======================================================= -->
+
+    <main class="app-main">
+
+
+      <!-- =====================================================
+           TOP BAR
+           ===================================================== -->
+
+      <header class="app-topbar">
+
+        <div class="app-topbar-left">
+
+          <button
+            type="button"
+            class="mobile-menu-toggle"
+            id="mobileMenuBtn"
+            aria-label="Open navigation"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+
+
+          <div class="app-topbar-title">
+
+            <span>
+              Student Portal
+            </span>
+
+            <strong>
+              Transport overview
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="topbar-actions">
+
+          <!-- Notification button -->
+
+          <button
+            type="button"
+            class="notification-button"
+            id="notificationButton"
+            aria-label="View notifications"
+            aria-expanded="false"
+          >
+
+            <span aria-hidden="true">
+              ♢
+            </span>
+
+            <span
+              class="notification-count hidden"
+              id="notificationCount"
+            >
+              0
+            </span>
+
+          </button>
+
+
+          <!-- Profile -->
+
+          <div class="topbar-profile">
+
+            <div
+              class="account-avatar"
+              id="topbarAvatar"
+            >
+              U
+            </div>
+
+          </div>
+
+        </div>
+
+      </header>
+
+
+      <!-- =====================================================
+           PAGE CONTENT
+           ===================================================== -->
+
+      <div class="app-content">
+
+
+        <!-- ===================================================
+             WELCOME HEADER
+             =================================================== -->
+
+        <section class="page-heading dashboard-heading">
+
+          <div>
+
+            <span class="eyebrow">
+              STUDENT PORTAL · SEPTEMBER 2026
+            </span>
+
+            <h1>
+              Welcome,
+              <span id="welcomeName">
+                Student
+              </span>
+            </h1>
+
+            <p>
+              Track your transport complaints, see updates and
+              help make campus mobility better.
+            </p>
+
+          </div>
+
+
+          <div class="page-actions">
+
+            <button
+              type="button"
+              class="btn btn-outline"
+              id="loadDashboardSample"
+            >
+              Load demo data
+            </button>
+
+            <a
+              href="complaint.html"
+              class="btn btn-primary"
+            >
+              <span aria-hidden="true">+</span>
+              Report an issue
+            </a>
+
+          </div>
+
+        </section>
+
+
+        <!-- ===================================================
+             NOTIFICATION PANEL
+             =================================================== -->
+
+        <section
+          class="notification-panel dashboard-notifications hidden"
+          id="notificationPanel"
+          aria-label="Notifications"
+        >
+
+          <div class="section-mini-header">
+
+            <div>
+
+              <span class="eyebrow">
+                UPDATES
+              </span>
+
+              <h2>
+                Notifications
+              </h2>
+
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-small btn-ghost"
+              id="markNotificationsRead"
+            >
+              Mark all read
+            </button>
+
+          </div>
+
+
+          <div id="notificationList">
+
+            <!-- JavaScript fills notifications -->
+
+          </div>
+
+        </section>
+
+
+        <!-- ===================================================
+             SERVICE STATUS BANNER
+             =================================================== -->
+
+        <section
+          class="service-banner"
+          aria-label="Current transport service"
+        >
+
+          <div class="service-banner-left">
+
+            <div class="service-icon">
+              CB
+            </div>
+
+            <div>
+
+              <span class="service-label">
+                NEXT CAMPUS SERVICE
+              </span>
+
+              <strong>
+                CB-205 · Main Gate Express
+              </strong>
+
+              <small>
+                North Campus → Main Gate
+              </small>
+
+            </div>
+
+          </div>
+
+
+          <div class="service-banner-right">
+
+            <div class="service-time">
+
+              <strong>
+                08:35 AM
+              </strong>
+
+              <span>
+                Next departure
+              </span>
+
+            </div>
+
+
+            <span class="service-status">
+              <span>●</span>
+              On time
+            </span>
+
+          </div>
+
+        </section>
+
+
+        <!-- ===================================================
+             KPI METRICS
+             =================================================== -->
+
+        <section
+          class="metric-grid"
+          aria-label="Complaint summary"
+        >
+
+
+          <!-- Open -->
+
+          <article class="metric-card">
+
+            <div class="metric-card-top">
+
+              <span class="metric-label">
+                Open complaints
+              </span>
+
+              <span class="metric-icon metric-open">
+                !
+              </span>
+
+            </div>
+
+            <strong
+              class="metric-value"
+              id="openCount"
+            >
+              0
+            </strong>
+
+            <span class="metric-meta">
+              Awaiting review
+            </span>
+
+          </article>
+
+
+          <!-- Progress -->
+
+          <article class="metric-card">
+
+            <div class="metric-card-top">
+
+              <span class="metric-label">
+                In progress
+              </span>
+
+              <span class="metric-icon metric-progress">
+                ↗
+              </span>
+
+            </div>
+
+            <strong
+              class="metric-value"
+              id="progressCount"
+            >
+              0
+            </strong>
+
+            <span class="metric-meta">
+              Being handled
+            </span>
+
+          </article>
+
+
+          <!-- Resolved -->
+
+          <article class="metric-card">
+
+            <div class="metric-card-top">
+
+              <span class="metric-label">
+                Resolved
+              </span>
+
+              <span class="metric-icon metric-resolved">
+                ✓
+              </span>
+
+            </div>
+
+            <strong
+              class="metric-value"
+              id="resolvedCount"
+            >
+              0
+            </strong>
+
+            <span class="metric-meta">
+              Successfully closed
+            </span>
+
+          </article>
+
+
+          <!-- SLA -->
+
+          <article class="metric-card">
+
+            <div class="metric-card-top">
+
+              <span class="metric-label">
+                SLA on track
+              </span>
+
+              <span class="metric-icon metric-sla">
+                ◷
+              </span>
+
+            </div>
+
+            <strong
+              class="metric-value"
+              id="studentSlaCount"
+            >
+              0%
+            </strong>
+
+            <span class="metric-meta">
+              Response performance
+            </span>
+
+          </article>
+
+        </section>
+
+
+        <!-- ===================================================
+             SMART INSIGHTS
+             =================================================== -->
+
+        <section class="dashboard-smart-grid">
+
+
+          <!-- Smart insight -->
+
+          <article class="smart-dashboard-card">
+
+            <div class="smart-card-header">
+
+              <div class="smart-card-icon">
+                ✦
+              </div>
+
+              <div>
+
+                <span class="eyebrow">
+                  ROUTEWISE INTELLIGENCE
+                </span>
+
+                <h2>
+                  Smart insight
+                </h2>
+
+              </div>
+
+            </div>
+
+
+            <div
+              id="studentSmartInsight"
+              class="smart-card-content"
+            >
+
+              <strong>
+                Your transport activity will appear here.
+              </strong>
+
+              <p>
+                Once complaints are submitted, RouteWise can
+                identify recurring issues and provide useful insights.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <!-- Route health -->
+
+          <article class="route-health-card">
+
+            <div class="smart-card-header">
+
+              <div class="route-health-icon">
+                ↗
+              </div>
+
+              <div>
+
+                <span class="eyebrow">
+                  ROUTE HEALTH
+                </span>
+
+                <h2>
+                  Your routes
+                </h2>
+
+              </div>
+
+            </div>
+
+
+            <div
+              id="studentRouteHealth"
+              class="route-health-list"
+            >
+
+              <div class="route-health-empty">
+                Route health will appear after complaint activity.
+              </div>
+
+            </div>
+
+          </article>
+
+        </section>
+
+
+        <!-- ===================================================
+             MAIN DASHBOARD GRID
+             =================================================== -->
+
+        <section class="card" aria-labelledby="studentGpsHeading">
+
+          <div class="card-header dashboard-card-header">
+            <div>
+              <span class="eyebrow">CAMPUS MOBILITY</span>
+              <h2 id="studentGpsHeading">Live bus location</h2>
+              <p id="studentGpsStatus" aria-live="polite">No bus location is being shared right now.</p>
+            </div>
+            <a class="btn btn-secondary btn-small hidden" id="studentGpsMapLink" target="_blank" rel="noopener noreferrer">Open map</a>
+          </div>
+
+          <p id="studentGpsDetails" class="field-help">Location sharing will appear here when the bus device starts GPS tracking.</p>
+
+          <div class="live-location-map-wrap hidden" id="studentGpsMapWrap">
+            <div id="studentBusMap" class="live-location-map" role="region" aria-label="Live bus location map" tabindex="0"></div>
+          </div>
+
+        </section>
+
+
+        <section class="dashboard-main-grid">
+
+
+          <!-- =================================================
+               COMPLAINT TRACKER
+               ================================================= -->
+
+          <div class="complaints-panel card">
+
+            <div class="card-header dashboard-card-header">
+
+              <div>
+
+                <span class="eyebrow">
+                  COMPLAINT TRACKER
+                </span>
+
+                <h2>
+                  Your complaints
+                </h2>
+
+                <p>
+                  Search and monitor every issue you have reported.
+                </p>
+
+              </div>
+
+
+              <a
+                href="complaint.html"
+                class="btn btn-small btn-primary"
+              >
+                + New
+              </a>
+
+            </div>
+
+
+            <!-- Search -->
+
+            <div class="complaint-toolbar">
+
+              <div class="search-box">
+
+                <span
+                  class="search-icon"
+                  aria-hidden="true"
+                >
+                  ⌕
+                </span>
+
+                <input
+                  type="search"
+                  id="dashboardSearch"
+                  placeholder="Search complaint, route or location..."
+                  autocomplete="off"
+                  aria-label="Search complaints"
+                >
+
+              </div>
+
+
+              <select
+                id="dashboardFilter"
+                class="filter-select"
+                aria-label="Filter complaints"
+              >
+
+                <option value="all">
+                  All complaints
+                </option>
+
+                <option value="new">
+                  New
+                </option>
+
+                <option value="review">
+                  In review
+                </option>
+
+                <option value="resolved">
+                  Resolved
+                </option>
+
+                <option value="overdue">
+                  Overdue
+                </option>
+
+                <option value="escalated">
+                  Escalated
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- Complaint list -->
+
+            <div
+              id="complaintList"
+              class="complaint-list"
+            >
+
+              <!-- JavaScript renders complaints here -->
+
+            </div>
+
+
+            <!-- Empty state -->
+
+            <div
+              id="dashboardEmptyState"
+              class="empty-state hidden"
+            >
+
+              <div class="empty-state-icon">
+                ✓
+              </div>
+
+              <h3>
+                No complaints found
+              </h3>
+
+              <p>
+                You haven't submitted a complaint matching this search yet.
+              </p>
+
+              <a
+                href="complaint.html"
+                class="btn btn-primary btn-small"
+              >
+                Report an issue
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <!-- =================================================
+               RIGHT COLUMN
+               ================================================= -->
+
+          <aside class="dashboard-side-column">
+
+
+            <!-- Quick actions -->
+
+            <article class="quick-actions-card card">
+
+              <div class="card-header">
+
+                <div>
+
+                  <span class="eyebrow">
+                    QUICK ACTIONS
+                  </span>
+
+                  <h2>
+                    What do you need?
+                  </h2>
+
+                </div>
+
+              </div>
+
+
+              <div class="quick-actions">
+
+                <a
+                  href="complaint.html"
+                  class="quick-action"
+                >
+
+                  <span class="quick-action-icon">
+                    +
+                  </span>
+
+                  <span>
+
+                    <strong>
+                      Report a problem
+                    </strong>
+
+                    <small>
+                      Submit a new complaint
+                    </small>
+
+                  </span>
+
+                  <span class="quick-arrow">
+                    →
+                  </span>
+
+                </a>
+
+
+                <button
+                  type="button"
+                  class="quick-action"
+                  id="viewActiveComplaints"
+                >
+
+                  <span class="quick-action-icon">
+                    ◷
+                  </span>
+
+                  <span>
+
+                    <strong>
+                      Track active issues
+                    </strong>
+
+                    <small>
+                      See complaints in progress
+                    </small>
+
+                  </span>
+
+                  <span class="quick-arrow">
+                    →
+                  </span>
+
+                </button>
+
+
+                <button
+                  type="button"
+                  class="quick-action"
+                  id="viewResolvedComplaints"
+                >
+
+                  <span class="quick-action-icon">
+                    ✓
+                  </span>
+
+                  <span>
+
+                    <strong>
+                      View resolved issues
+                    </strong>
+
+                    <small>
+                      Review completed complaints
+                    </small>
+
+                  </span>
+
+                  <span class="quick-arrow">
+                    →
+                  </span>
+
+                </button>
+
+              </div>
+
+            </article>
+
+
+            <!-- SLA information -->
+
+            <article class="student-sla-card card">
+
+              <div class="card-header">
+
+                <div>
+
+                  <span class="eyebrow">
+                    RESPONSE TARGET
+                  </span>
+
+                  <h2>
+                    SLA status
+                  </h2>
+
+                </div>
+
+              </div>
+
+
+              <div class="student-sla-body">
+
+                <div
+                  class="sla-ring"
+                  id="studentSlaRing"
+                >
+
+                  <div class="sla-ring-inner">
+
+                    <strong id="studentSlaPercent">
+                      0%
+                    </strong>
+
+                    <span>
+                      on track
+                    </span>
+
+                  </div>
+
+                </div>
+
+
+                <div class="sla-summary">
+
+                  <div>
+
+                    <span class="sla-dot on-track"></span>
+
+                    <span>
+                      On track
+                    </span>
+
+                    <strong id="studentSlaOnTrack">
+                      0
+                    </strong>
+
+                  </div>
+
+
+                  <div>
+
+                    <span class="sla-dot due-soon"></span>
+
+                    <span>
+                      Due soon
+                    </span>
+
+                    <strong id="studentSlaDueSoon">
+                      0
+                    </strong>
+
+                  </div>
+
+
+                  <div>
+
+                    <span class="sla-dot overdue"></span>
+
+                    <span>
+                      Overdue
+                    </span>
+
+                    <strong id="studentSlaOverdue">
+                      0
+                    </strong>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </article>
+
+
+            <!-- Help / safety -->
+
+            <article class="help-card">
+
+              <div class="help-icon">
+                ?
+              </div>
+
+              <div>
+
+                <strong>
+                  Need urgent help?
+                </strong>
+
+                <p>
+                  For immediate transport safety concerns, contact
+                  your campus transport authority directly.
+                </p>
+
+              </div>
+
+            </article>
+
+          </aside>
+
+        </section>
+
+
+        <!-- ===================================================
+             RECENT ACTIVITY
+             =================================================== -->
+
+        <section class="recent-activity-card card">
+
+          <div class="card-header">
+
+            <div>
+
+              <span class="eyebrow">
+                ACTIVITY
+              </span>
+
+              <h2>
+                Recent updates
+              </h2>
+
+              <p>
+                The latest changes to your complaints.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div
+            id="studentActivityList"
+            class="activity-list"
+          >
+
+            <div class="activity-empty">
+              No recent activity yet.
+            </div>
+
+          </div>
+
+        </section>
+
+
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <!-- =========================================================
+       COMPLAINT DETAIL MODAL
+       ========================================================= -->
+
+  <dialog
+    id="complaintDetailDialog"
+    class="detail-dialog"
+  >
+
+    <div class="detail-modal">
+
+      <div class="detail-header">
+
+        <div>
+
+          <span class="eyebrow">
+            COMPLAINT DETAILS
+          </span>
+
+          <h2 id="detailComplaintTitle">
+            Complaint
+          </h2>
+
+          <span
+            id="detailComplaintRef"
+            class="complaint-ref"
+          >
+            RW-0000
+          </span>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="modal-close"
+          id="closeComplaintDetail"
+          aria-label="Close complaint details"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div
+        id="complaintDetailContent"
+        class="detail-content"
+      >
+
+        <!-- JavaScript renders detail -->
+
+      </div>
+
+    </div>
+
+  </dialog>
+
+
+  <!-- =========================================================
+       MOBILE SIDEBAR OVERLAY
+       ========================================================= -->
+
+  <div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+  ></div>
+
+
+  <!-- =========================================================
+       APPLICATION SCRIPT
+       ========================================================= -->
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

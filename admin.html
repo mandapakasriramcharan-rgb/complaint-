@@ -1,0 +1,1534 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Admin Workspace | RouteWise</title>
+
+  <meta
+    name="description"
+    content="RouteWise transport complaint command centre for campus administrators."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+
+</head>
+
+
+<body class="app-page admin-page" data-page="admin">
+
+
+  <!-- =====================================================
+       MOBILE SIDEBAR OVERLAY
+       ===================================================== -->
+
+  <div
+    id="sidebarOverlay"
+    class="sidebar-overlay"
+  ></div>
+
+
+  <!-- =====================================================
+       SIDEBAR
+       ===================================================== -->
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+
+      <div class="brand-mark">
+        R
+      </div>
+
+      <div>
+        <strong>RouteWise</strong>
+        <span>Campus Transport</span>
+      </div>
+
+    </div>
+
+
+    <nav class="nav">
+
+      <a
+        href="dashboard.html"
+        class="nav-item"
+      >
+        <span class="nav-icon">⌂</span>
+        <span>Student portal</span>
+      </a>
+
+
+      <a
+        href="admin.html"
+        class="nav-item active"
+      >
+        <span class="nav-icon">▦</span>
+        <span>Admin workspace</span>
+      </a>
+
+
+      <a
+        href="complaint.html"
+        class="nav-item"
+      >
+        <span class="nav-icon">＋</span>
+        <span>New complaint</span>
+      </a>
+
+    </nav>
+
+
+    <!-- Admin mode -->
+
+    <div class="sidebar-section">
+
+      <div class="sidebar-label">
+        Workspace
+      </div>
+
+      <div class="admin-mode-card">
+
+        <div class="admin-mode-icon">
+          ✓
+        </div>
+
+        <div>
+          <strong>Demo Admin Mode</strong>
+
+          <span>
+            Transport operations
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Theme -->
+
+    <div class="sidebar-section">
+
+      <div class="sidebar-label">
+        Appearance
+      </div>
+
+      <div class="theme-control">
+
+        <label for="themeSelect">
+          Theme
+        </label>
+
+        <select id="themeSelect">
+
+          <option value="light">
+            Light
+          </option>
+
+          <option value="dark">
+            Dark
+          </option>
+
+          <option value="blue">
+            Blue
+          </option>
+
+          <option value="green">
+            Green
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <a
+      href="index.html"
+      class="sidebar-home"
+    >
+      ← Back to home
+    </a>
+
+
+    <div class="account-card admin-account-card">
+
+      <div class="account-avatar" id="adminAccountAvatar">
+        A
+      </div>
+
+      <div class="account-info">
+        <strong id="adminAccountName">Transport Admin</strong>
+        <span id="adminAccountEmail">Operations workspace</span>
+      </div>
+
+      <span class="account-status" aria-label="Online"></span>
+
+      <button
+        type="button"
+        class="sidebar-logout"
+        id="logoutButton"
+      >
+        Sign out
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
+
+  <main class="main">
+
+
+    <!-- ===================================================
+         TOPBAR
+         =================================================== -->
+
+    <header class="topbar">
+
+      <button
+        type="button"
+        class="mobile-menu"
+        id="mobileMenuButton"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+
+      <div class="topbar-title">
+
+        <span>
+          ADMINISTRATION
+        </span>
+
+        <strong>
+          Complaint command centre
+        </strong>
+
+      </div>
+
+
+      <div class="topbar-actions">
+
+        <button
+          type="button"
+          class="btn btn-secondary btn-small"
+          id="loadAdminSample"
+        >
+          Load sample data
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <!-- ===================================================
+         PAGE CONTENT
+         =================================================== -->
+
+    <section class="page-content">
+
+
+      <!-- =================================================
+           HEADER
+           ================================================= -->
+
+      <div class="admin-page-heading">
+
+        <div>
+
+          <div class="eyebrow">
+            TRANSPORT OPERATIONS
+          </div>
+
+          <h1>
+            Monitor. Assign. Resolve.
+          </h1>
+
+          <p>
+            A single workspace for managing student transport
+            complaints, SLA deadlines and route health.
+          </p>
+
+        </div>
+
+
+        <div class="admin-live-indicator">
+
+          <span></span>
+
+          Live prototype
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           DEMO NOTICE
+           ================================================= -->
+
+      <div class="workspace-notice">
+
+        <div class="workspace-notice-icon">
+          ⓘ
+        </div>
+
+        <div>
+
+          <strong>
+            Prototype workspace
+          </strong>
+
+          <p>
+            Prototype access and GPS updates are stored in this browser only.
+            Production security and sharing across devices require a backend.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           QUICK STATS
+           ================================================= -->
+
+      <section class="admin-stat-grid">
+
+
+        <div class="admin-stat-card">
+
+          <div class="admin-stat-icon">
+            +
+          </div>
+
+          <div>
+
+            <span>
+              New complaints
+            </span>
+
+            <strong id="adminNewCount">
+              0
+            </strong>
+
+            <small>
+              Awaiting review
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <div class="admin-stat-card">
+
+          <div class="admin-stat-icon">
+            ◷
+          </div>
+
+          <div>
+
+            <span>
+              In review
+            </span>
+
+            <strong id="adminReviewCount">
+              0
+            </strong>
+
+            <small>
+              Currently assigned
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <div class="admin-stat-card">
+
+          <div class="admin-stat-icon danger">
+            !
+          </div>
+
+          <div>
+
+            <span>
+              Urgent
+            </span>
+
+            <strong id="adminUrgentCount">
+              0
+            </strong>
+
+            <small>
+              Needs attention
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <div class="admin-stat-card">
+
+          <div class="admin-stat-icon warning">
+            ⚠
+          </div>
+
+          <div>
+
+            <span>
+              SLA overdue
+            </span>
+
+            <strong id="adminOverdueCount">
+              0
+            </strong>
+
+            <small>
+              Requires escalation
+            </small>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <section id="adminAccountRequestsPanel" class="admin-panel hidden" aria-labelledby="adminAccountRequestsHeading">
+        <div class="admin-panel-header">
+          <div>
+            <span class="analytics-label">ACCOUNT APPROVAL</span>
+            <h2 id="adminAccountRequestsHeading">Admin access requests</h2>
+            <p>New accounts appear here. Grant admin access or deny the request.</p>
+          </div>
+        </div>
+        <div id="adminAccountRequests" class="admin-complaint-list" aria-live="polite"></div>
+        <p class="form-message" id="adminAccessDecisionMessage" role="status" aria-live="polite"></p>
+      </section>
+
+
+      <section class="admin-panel" aria-labelledby="busGpsHeading">
+
+        <div class="admin-panel-header">
+          <div>
+            <span class="analytics-label">LIVE BUS LOCATION</span>
+            <h2 id="busGpsHeading">GPS tracking</h2>
+            <p id="busGpsStatus" aria-live="polite">GPS sharing is stopped.</p>
+          </div>
+          <span class="panel-status">Device permission required</span>
+        </div>
+
+        <div class="admin-toolbar gps-controls">
+          <label for="gpsRouteSelect">Bus route</label>
+          <select id="gpsRouteSelect" aria-label="Bus route for GPS tracking">
+            <option value="CB-101 · North Campus">CB-101 · North Campus</option>
+            <option value="CB-205 · Main Gate Express">CB-205 · Main Gate Express</option>
+            <option value="CB-314 · East Hostel Loop">CB-314 · East Hostel Loop</option>
+          </select>
+          <button type="button" class="btn btn-primary btn-small" id="startGpsButton">Start sharing</button>
+          <button type="button" class="btn btn-secondary btn-small" id="stopGpsButton" disabled>Stop sharing</button>
+        </div>
+
+        <div class="live-location-map-wrap admin-live-location-map hidden" id="adminGpsMapWrap">
+          <div id="adminBusMap" class="live-location-map" role="region" aria-label="Live bus location map" tabindex="0"></div>
+        </div>
+
+        <p class="field-help">Start this on the device carried by the bus. Browser location permission and a secure connection are required.</p>
+
+      </section>
+
+
+      <!-- =================================================
+           KPI ANALYTICS
+           ================================================= -->
+
+      <section class="analytics-kpi-grid">
+
+
+        <div class="analytics-kpi">
+
+          <span>
+            Total complaints
+          </span>
+
+          <strong id="analyticsTotal">
+            0
+          </strong>
+
+          <small>
+            All reported issues
+          </small>
+
+        </div>
+
+
+        <div class="analytics-kpi">
+
+          <span>
+            Resolution rate
+          </span>
+
+          <strong id="analyticsResolutionRate">
+            0%
+          </strong>
+
+          <small>
+            Complaints resolved
+          </small>
+
+        </div>
+
+
+        <div class="analytics-kpi">
+
+          <span>
+            SLA compliance
+          </span>
+
+          <strong id="analyticsSlaRate">
+            0%
+          </strong>
+
+          <small>
+            Within target time
+          </small>
+
+        </div>
+
+
+        <div class="analytics-kpi">
+
+          <span>
+            Escalated
+          </span>
+
+          <strong id="analyticsEscalated">
+            0
+          </strong>
+
+          <small>
+            Automatically flagged
+          </small>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           ANALYTICS GRID
+           ================================================= -->
+
+      <section class="analytics-grid">
+
+
+        <!-- CATEGORY -->
+
+        <article class="analytics-card">
+
+          <div class="analytics-card-header">
+
+            <div>
+
+              <span class="analytics-label">
+                COMPLAINT MIX
+              </span>
+
+              <h2>
+                Category analytics
+              </h2>
+
+            </div>
+
+            <span class="analytics-card-icon">
+              ◫
+            </span>
+
+          </div>
+
+
+          <div
+            id="categoryChart"
+            class="chart-area"
+          >
+            <!-- Generated by app.js -->
+          </div>
+
+        </article>
+
+
+        <!-- PRIORITY -->
+
+        <article class="analytics-card">
+
+          <div class="analytics-card-header">
+
+            <div>
+
+              <span class="analytics-label">
+                RISK LEVEL
+              </span>
+
+              <h2>
+                Priority distribution
+              </h2>
+
+            </div>
+
+            <span class="analytics-card-icon">
+              !
+            </span>
+
+          </div>
+
+
+          <div
+            id="priorityChart"
+            class="chart-area"
+          >
+            <!-- Generated by app.js -->
+          </div>
+
+        </article>
+
+
+        <!-- ROUTES -->
+
+        <article class="analytics-card">
+
+          <div class="analytics-card-header">
+
+            <div>
+
+              <span class="analytics-label">
+                ROUTE HEALTH
+              </span>
+
+              <h2>
+                Complaints by route
+              </h2>
+
+            </div>
+
+            <span class="analytics-card-icon">
+              ↗
+            </span>
+
+          </div>
+
+
+          <div
+            id="routeChart"
+            class="chart-area"
+          >
+            <!-- Generated by app.js -->
+          </div>
+
+        </article>
+
+      </section>
+
+
+      <!-- =================================================
+           INTELLIGENCE SECTION
+           ================================================= -->
+
+      <section class="admin-intelligence-grid">
+
+
+        <!-- SLA -->
+
+        <article class="admin-panel sla-panel">
+
+          <div class="admin-panel-header">
+
+            <div>
+
+              <span class="analytics-label">
+                RESPONSE PERFORMANCE
+              </span>
+
+              <h2>
+                SLA monitor
+              </h2>
+
+            </div>
+
+            <span class="panel-status">
+              Automated
+            </span>
+
+          </div>
+
+
+          <div class="sla-monitor-body">
+
+            <div
+              class="sla-ring"
+              id="slaRing"
+            >
+
+              <div class="sla-ring-inner">
+
+                <strong id="slaRingValue">
+                  0%
+                </strong>
+
+                <span>
+                  on track
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="sla-breakdown">
+
+              <div class="sla-breakdown-row">
+
+                <div>
+
+                  <span class="sla-dot"></span>
+
+                  On track
+
+                </div>
+
+                <strong id="slaOnTrack">
+                  0
+                </strong>
+
+              </div>
+
+
+              <div class="sla-breakdown-row">
+
+                <div>
+
+                  <span class="sla-dot warning"></span>
+
+                  Due soon
+
+                </div>
+
+                <strong id="slaDueSoon">
+                  0
+                </strong>
+
+              </div>
+
+
+              <div class="sla-breakdown-row">
+
+                <div>
+
+                  <span class="sla-dot danger"></span>
+
+                  Overdue
+
+                </div>
+
+                <strong id="slaOverdue">
+                  0
+                </strong>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="sla-policy">
+
+            <span>
+              SLA policy
+            </span>
+
+            <div>
+
+              <b>Low</b>
+              <span>48h</span>
+
+              <b>Medium</b>
+              <span>24h</span>
+
+              <b>High</b>
+              <span>12h</span>
+
+              <b>Urgent</b>
+              <span>2h</span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- SMART INSIGHTS -->
+
+        <article class="admin-panel">
+
+          <div class="admin-panel-header">
+
+            <div>
+
+              <span class="analytics-label">
+                SMART INTELLIGENCE
+              </span>
+
+              <h2>
+                Operations insights
+              </h2>
+
+            </div>
+
+            <span class="panel-status">
+              AI-style
+            </span>
+
+          </div>
+
+
+          <div class="insight-list">
+
+
+            <div class="insight-item">
+
+              <div class="insight-icon">
+                ⌖
+              </div>
+
+              <div>
+
+                <span>
+                  Complaint hotspot
+                </span>
+
+                <strong id="hotspotLocation">
+                  No hotspot yet
+                </strong>
+
+                <p id="hotspotDescription">
+                  Submit complaints to identify frequently reported locations.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="insight-item">
+
+              <div class="insight-icon">
+                ↗
+              </div>
+
+              <div>
+
+                <span>
+                  Most reported route
+                </span>
+
+                <strong id="mostReportedRoute">
+                  —
+                </strong>
+
+                <p>
+                  <span id="mostReportedRouteCount">
+                    0
+                  </span>
+                  complaint(s)
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="insight-item alert">
+
+              <div class="insight-icon">
+                !
+              </div>
+
+              <div>
+
+                <span>
+                  Priority alert
+                </span>
+
+                <strong id="priorityAlert">
+                  No major alert
+                </strong>
+
+                <p id="priorityAlertDescription">
+                  No urgent pattern detected.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- TREND PREDICTION -->
+
+        <article class="admin-panel trend-panel">
+
+          <div class="admin-panel-header">
+
+            <div>
+
+              <span class="analytics-label">
+                TREND FORECAST
+              </span>
+
+              <h2>
+                Demand prediction
+              </h2>
+
+            </div>
+
+            <span class="panel-status">
+              Prototype
+            </span>
+
+          </div>
+
+
+          <div
+            id="trendPrediction"
+            class="trend-prediction"
+          >
+
+            <div class="trend-main">
+
+              <span>
+                Expected complaint trend
+              </span>
+
+              <strong id="trendDirection">
+                Stable
+              </strong>
+
+            </div>
+
+
+            <div class="trend-meter">
+
+              <div
+                id="trendMeter"
+                class="trend-meter-fill"
+              ></div>
+
+            </div>
+
+
+            <p id="trendDescription">
+              Not enough historical data for a strong prediction yet.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- ROUTE HEALTH SCORE -->
+
+        <article class="admin-panel route-health-panel">
+
+          <div class="admin-panel-header">
+
+            <div>
+
+              <span class="analytics-label">
+                SERVICE QUALITY
+              </span>
+
+              <h2>
+                Route health score
+              </h2>
+
+            </div>
+
+            <span class="panel-status">
+              Live
+            </span>
+
+          </div>
+
+
+          <div
+            id="adminRouteHealth"
+            class="admin-route-health"
+          >
+            <!-- Generated by app.js -->
+          </div>
+
+        </article>
+
+      </section>
+
+
+      <!-- =================================================
+           COMPLAINT QUEUE
+           ================================================= -->
+
+      <section class="admin-panel complaint-queue-panel">
+
+
+        <div class="admin-panel-header queue-header">
+
+          <div>
+
+            <span class="analytics-label">
+              CASE MANAGEMENT
+            </span>
+
+            <h2>
+              Complaint queue
+            </h2>
+
+            <p>
+              Search, assign, update and resolve transport issues.
+            </p>
+
+          </div>
+
+
+          <div class="queue-summary">
+
+            <span id="queueVisibleCount">
+              0
+            </span>
+
+            visible cases
+
+            <span
+              id="adminQueueSaveStatus"
+              role="status"
+              aria-live="polite"
+            ></span>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             FILTER BAR
+             ================================================= -->
+
+        <div class="admin-toolbar">
+
+
+          <div class="admin-search-wrap">
+
+            <span>
+              ⌕
+            </span>
+
+            <input
+              type="search"
+              id="adminSearch"
+              placeholder="Search complaint, route, location or reference..."
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <select id="adminFilter">
+
+            <option value="all">
+              All complaints
+            </option>
+
+            <option value="New">
+              New
+            </option>
+
+            <option value="In review">
+              In review
+            </option>
+
+            <option value="Resolved">
+              Resolved
+            </option>
+
+            <option value="Urgent">
+              Urgent
+            </option>
+
+            <option value="Overdue">
+              SLA overdue
+            </option>
+
+            <option value="Escalated">
+              Escalated
+            </option>
+
+          </select>
+
+
+          <select id="adminPriorityFilter">
+
+            <option value="all">
+              All priorities
+            </option>
+
+            <option value="Low">
+              Low
+            </option>
+
+            <option value="Medium">
+              Medium
+            </option>
+
+            <option value="High">
+              High
+            </option>
+
+            <option value="Urgent">
+              Urgent
+            </option>
+
+          </select>
+
+
+          <select id="adminRouteFilter">
+
+            <option value="all">
+              All routes
+            </option>
+
+            <option value="CB-101">
+              CB-101
+            </option>
+
+            <option value="CB-205">
+              CB-205
+            </option>
+
+            <option value="CB-314">
+              CB-314
+            </option>
+
+            <option value="Other">
+              Other
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- =================================================
+             QUEUE HEADER
+             ================================================= -->
+
+        <div class="queue-column-header">
+
+          <span>
+            Complaint
+          </span>
+
+          <span>
+            Priority
+          </span>
+
+          <span>
+            SLA
+          </span>
+
+          <span>
+            Status
+          </span>
+
+          <span>
+            Actions
+          </span>
+
+        </div>
+
+
+        <!-- =================================================
+             QUEUE LIST
+             ================================================= -->
+
+        <div
+          id="adminComplaintList"
+          class="admin-complaint-list"
+        >
+          <!-- Generated by app.js -->
+        </div>
+
+
+        <!-- Empty -->
+
+        <div
+          id="adminEmptyState"
+          class="admin-empty-state hidden"
+        >
+
+          <div class="empty-icon">
+            ✓
+          </div>
+
+          <h3>
+            No complaints found
+          </h3>
+
+          <p>
+            Try changing your search or filters.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           TEAM / ASSIGNMENT
+           ================================================= -->
+
+      <section class="admin-panel assignment-panel">
+
+
+        <div class="admin-panel-header">
+
+          <div>
+
+            <span class="analytics-label">
+              WORKLOAD BY TEAM
+            </span>
+
+            <h2>
+              Complaint assignments
+            </h2>
+
+            <p>
+              Total complaints grouped by the transport team assigned to handle them.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="team-grid">
+
+
+          <div class="team-card">
+
+            <div class="team-avatar">
+              A
+            </div>
+
+            <div>
+
+              <strong>
+                Transport Admin
+              </strong>
+
+              <span>
+                General operations
+              </span>
+
+            </div>
+
+            <b id="teamAdminCount">
+              0
+            </b>
+
+          </div>
+
+
+          <div class="team-card">
+
+            <div class="team-avatar">
+              R
+            </div>
+
+            <div>
+
+              <strong>
+                Route Operations
+              </strong>
+
+              <span>
+                Route and stop issues
+              </span>
+
+            </div>
+
+            <b id="teamRouteCount">
+              0
+            </b>
+
+          </div>
+
+
+          <div class="team-card">
+
+            <div class="team-avatar">
+              S
+            </div>
+
+            <div>
+
+              <strong>
+                Safety Team
+              </strong>
+
+              <span>
+                Safety and urgent issues
+              </span>
+
+            </div>
+
+            <b id="teamSafetyCount">
+              0
+            </b>
+
+          </div>
+
+
+          <div class="team-card">
+
+            <div class="team-avatar">
+              D
+            </div>
+
+            <div>
+
+              <strong>
+                Driver Operations
+              </strong>
+
+              <span>
+                Driver-related complaints
+              </span>
+
+            </div>
+
+            <b id="teamDriverCount">
+              0
+            </b>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       COMPLAINT DETAIL MODAL
+       ===================================================== -->
+
+  <dialog
+    id="adminComplaintDialog"
+    class="detail-dialog admin-detail-dialog"
+  >
+
+    <div class="detail-modal">
+
+
+      <!-- Header -->
+
+      <div class="detail-header">
+
+        <div>
+
+          <div class="eyebrow">
+            CASE DETAILS
+          </div>
+
+          <h2 id="adminDetailTitle">
+            Complaint
+          </h2>
+
+          <p id="adminDetailRef">
+            —
+          </p>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="modal-close"
+          id="closeAdminComplaintDialog"
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <!-- Body -->
+
+      <div
+        id="adminDetailContent"
+        class="detail-content"
+      >
+
+        <!-- Generated by app.js -->
+
+      </div>
+
+
+      <!-- =================================================
+           ADMIN ACTIONS
+           ================================================= -->
+
+      <div class="admin-detail-actions">
+
+
+        <div class="admin-action-field">
+
+          <label for="adminStatusSelect">
+            Status
+          </label>
+
+          <select id="adminStatusSelect">
+
+            <option value="New">
+              New
+            </option>
+
+            <option value="In review">
+              In review
+            </option>
+
+            <option value="Resolved">
+              Resolved
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="admin-action-field">
+
+          <label for="adminAssignSelect">
+            Assign team
+          </label>
+
+          <select id="adminAssignSelect">
+
+            <option value="">
+              Unassigned
+            </option>
+
+            <option value="Transport Admin">
+              Transport Admin
+            </option>
+
+            <option value="Route Operations">
+              Route Operations
+            </option>
+
+            <option value="Safety Team">
+              Safety Team
+            </option>
+
+            <option value="Driver Operations">
+              Driver Operations
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="admin-action-field full">
+
+          <label for="adminResolutionRemarks">
+            Resolution / internal remarks
+          </label>
+
+          <textarea
+            id="adminResolutionRemarks"
+            rows="4"
+            maxlength="500"
+            placeholder="Add action taken, resolution details or internal remarks..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="admin-action-buttons">
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="adminEscalateButton"
+          >
+            Escalate
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="adminSaveComplaint"
+          >
+            Save changes
+          </button>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </dialog>
+
+
+  <!-- =====================================================
+       SCRIPT
+       ===================================================== -->
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

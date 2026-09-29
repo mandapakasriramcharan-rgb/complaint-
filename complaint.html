@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>New Complaint | RouteWise</title>
+
+  <meta
+    name="description"
+    content="Report and track campus transport issues with RouteWise."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="app-page" data-page="complaint">
+
+  <!-- =====================================================
+       MOBILE SIDEBAR OVERLAY
+       ===================================================== -->
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+
+  <!-- =====================================================
+       SIDEBAR
+       ===================================================== -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+      <div class="brand-mark">R</div>
+
+      <div>
+        <strong>RouteWise</strong>
+        <span>Campus Transport</span>
+      </div>
+    </div>
+
+
+    <nav class="nav">
+
+      <a href="dashboard.html" class="nav-item">
+        <span class="nav-icon">⌂</span>
+        <span>Overview</span>
+      </a>
+
+      <a href="complaint.html" class="nav-item active">
+        <span class="nav-icon">＋</span>
+        <span>New complaint</span>
+      </a>
+
+    </nav>
+
+
+    <!-- Theme -->
+    <div class="sidebar-section">
+
+      <div class="sidebar-label">Appearance</div>
+
+      <div class="theme-control">
+
+        <label for="themeSelect">Theme</label>
+
+        <select id="themeSelect">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- Account -->
+    <div class="account-card">
+
+      <div class="account-avatar" id="accountAvatar">
+        U
+      </div>
+
+      <div class="account-info">
+        <strong id="accountName">Student</strong>
+        <span id="accountEmail">student@college.edu</span>
+      </div>
+
+      <button
+        type="button"
+        class="account-logout"
+        id="logoutButton"
+        title="Logout"
+      >
+        ↪
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
+  <main class="main">
+
+    <!-- Topbar -->
+    <header class="topbar">
+
+      <button
+        type="button"
+        class="mobile-menu"
+        id="mobileMenuButton"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+      <div class="topbar-title">
+        <span>Student Portal</span>
+        <strong>Tell us what happened</strong>
+      </div>
+
+      <div class="topbar-actions">
+
+        <a href="dashboard.html" class="btn btn-secondary btn-small">
+          ← Dashboard
+        </a>
+
+      </div>
+
+    </header>
+
+
+    <!-- ===================================================
+         PAGE CONTENT
+         =================================================== -->
+    <section class="page-content complaint-page">
+
+      <!-- Header -->
+      <div class="page-heading">
+
+        <div>
+          <div class="eyebrow">TRANSPORT SUPPORT</div>
+
+          <h1>Report a transport issue</h1>
+
+          <p>
+            Give us the details and RouteWise will help classify,
+            prioritize and track your complaint.
+          </p>
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           SMART ASSIST BANNER
+           ================================================= -->
+      <section class="smart-assist-banner">
+
+        <div class="smart-assist-icon">
+          ✦
+        </div>
+
+        <div class="smart-assist-content">
+
+          <strong>RouteWise Smart Assist</strong>
+
+          <p>
+            Your complaint will be automatically analyzed to suggest
+            a category, priority and response deadline.
+          </p>
+
+        </div>
+
+        <span class="prototype-badge">
+          Prototype AI
+        </span>
+
+      </section>
+
+
+      <!-- =================================================
+           COMPLAINT FORM
+           ================================================= -->
+      <form id="complaintForm" class="complaint-form" novalidate>
+
+        <!-- Hidden metadata -->
+        <input type="hidden" id="recommendedCategory">
+        <input type="hidden" id="recommendedPriority">
+
+
+        <!-- =================================================
+             SECTION 1 — BASIC INFORMATION
+             ================================================= -->
+        <section class="form-card">
+
+          <div class="form-card-header">
+
+            <div>
+              <span class="form-step">01</span>
+
+              <div>
+                <h2>Issue details</h2>
+                <p>Tell us what type of problem you experienced.</p>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="form-grid">
+
+            <!-- Category -->
+            <div class="form-group">
+
+              <label for="category">
+                Complaint category
+                <span class="required">*</span>
+              </label>
+
+              <select id="category" name="category" required>
+
+                <option value="">
+                  Select a category
+                </option>
+
+                <option value="Late arrival">
+                  Late arrival
+                </option>
+
+                <option value="Overcrowding">
+                  Overcrowding
+                </option>
+
+                <option value="Driver behaviour">
+                  Driver behaviour
+                </option>
+
+                <option value="Safety concern">
+                  Safety concern
+                </option>
+
+                <option value="Route or stop issue">
+                  Route or stop issue
+                </option>
+
+                <option value="Cleanliness">
+                  Cleanliness
+                </option>
+
+                <option value="Other">
+                  Other
+                </option>
+
+              </select>
+
+              <small class="field-help">
+                Smart Assist can recommend this from your description.
+              </small>
+
+            </div>
+
+
+            <!-- Priority -->
+            <div class="form-group">
+
+              <label for="priority">
+                Priority
+                <span class="required">*</span>
+              </label>
+
+              <select id="priority" name="priority" required>
+
+                <option value="">
+                  Select priority
+                </option>
+
+                <option value="Low">
+                  Low
+                </option>
+
+                <option value="Medium">
+                  Medium
+                </option>
+
+                <option value="High">
+                  High
+                </option>
+
+                <option value="Urgent">
+                  Urgent
+                </option>
+
+              </select>
+
+              <small class="field-help">
+                Priority affects the expected response time.
+              </small>
+
+            </div>
+
+
+            <!-- Route -->
+            <div class="form-group">
+
+              <label for="route">
+                Bus / route
+                <span class="required">*</span>
+              </label>
+
+              <select id="route" name="route" required>
+
+                <option value="">
+                  Select route
+                </option>
+
+                <option value="CB-101 · North Campus">
+                  CB-101 · North Campus
+                </option>
+
+                <option value="CB-205 · Main Gate Express">
+                  CB-205 · Main Gate Express
+                </option>
+
+                <option value="CB-314 · East Hostel Loop">
+                  CB-314 · East Hostel Loop
+                </option>
+
+                <option value="Other / Not known">
+                  Other / Not known
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- Incident date -->
+            <div class="form-group">
+
+              <label for="incidentAt">
+                When did it happen?
+                <span class="required">*</span>
+              </label>
+
+              <input
+                type="datetime-local"
+                id="incidentAt"
+                name="incidentAt"
+                required
+              >
+
+            </div>
+
+
+            <!-- Location -->
+            <div class="form-group form-group-full">
+
+              <label for="location">
+                Location / stop
+                <span class="required">*</span>
+              </label>
+
+              <input
+                type="text"
+                id="location"
+                name="location"
+                maxlength="100"
+                placeholder="Example: Main Gate bus stop"
+                required
+              >
+
+              <small class="field-help">
+                Mention the stop, gate, hostel or campus area.
+              </small>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SECTION 2 — DESCRIPTION
+             ================================================= -->
+        <section class="form-card">
+
+          <div class="form-card-header">
+
+            <div>
+              <span class="form-step">02</span>
+
+              <div>
+                <h2>Describe the problem</h2>
+                <p>More detail helps the transport team act faster.</p>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="description">
+              What happened?
+              <span class="required">*</span>
+            </label>
+
+            <textarea
+              id="description"
+              name="description"
+              rows="7"
+              minlength="20"
+              maxlength="1000"
+              placeholder="Example: The CB-205 bus was already full when it arrived at the main gate, and several students could not board..."
+              required
+            ></textarea>
+
+            <div class="textarea-footer">
+
+              <small class="field-help">
+                Minimum 20 characters · Maximum 1000 characters
+              </small>
+
+              <span id="descriptionCount">
+                0 / 1000
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- Smart analysis -->
+          <div
+            id="smartAnalysis"
+            class="smart-analysis hidden"
+          >
+
+            <div class="smart-analysis-header">
+
+              <span class="smart-analysis-icon">✦</span>
+
+              <div>
+                <strong>Smart analysis</strong>
+                <span>Rule-based prototype recommendation</span>
+              </div>
+
+            </div>
+
+            <div class="smart-analysis-grid">
+
+              <div class="analysis-item">
+
+                <span>Suggested category</span>
+
+                <strong id="suggestedCategory">
+                  —
+                </strong>
+
+              </div>
+
+              <div class="analysis-item">
+
+                <span>Suggested priority</span>
+
+                <strong id="suggestedPriority">
+                  —
+                </strong>
+
+              </div>
+
+              <div class="analysis-item">
+
+                <span>AI-style summary</span>
+
+                <strong id="suggestedSummary">
+                  —
+                </strong>
+
+              </div>
+
+            </div>
+
+            <div
+              id="duplicateWarning"
+              class="duplicate-warning hidden"
+            >
+              <span>⚠</span>
+
+              <div>
+                <strong>Similar complaint detected</strong>
+
+                <p id="duplicateWarningText">
+                  A similar complaint may already exist.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SECTION 3 — PHOTO EVIDENCE
+             ================================================= -->
+        <section class="form-card">
+
+          <div class="form-card-header">
+
+            <div>
+              <span class="form-step">03</span>
+
+              <div>
+                <h2>Evidence</h2>
+                <p>Add a photo if it helps explain the issue.</p>
+              </div>
+            </div>
+
+            <span class="optional-badge">
+              Optional
+            </span>
+
+          </div>
+
+
+          <div class="attachment-area">
+
+            <label
+              for="attachment"
+              class="attachment-dropzone"
+              id="attachmentDropzone"
+            >
+
+              <span class="attachment-icon">
+                ↑
+              </span>
+
+              <strong>
+                Upload a photo
+              </strong>
+
+              <span>
+                JPG, PNG or WEBP · Maximum 2 MB
+              </span>
+
+              <input
+                type="file"
+                id="attachment"
+                name="attachment"
+                accept="image/jpeg,image/png,image/webp"
+                hidden
+              >
+
+            </label>
+
+
+            <div
+              id="attachmentPreview"
+              class="attachment-preview hidden"
+            ></div>
+
+          </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SECTION 4 — SLA PREVIEW
+             ================================================= -->
+        <section class="form-card sla-preview-card">
+
+          <div class="form-card-header">
+
+            <div>
+              <span class="form-step">04</span>
+
+              <div>
+                <h2>Response expectation</h2>
+                <p>Based on the selected priority.</p>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="sla-preview">
+
+            <div class="sla-preview-icon">
+              ⏱
+            </div>
+
+            <div class="sla-preview-content">
+
+              <span>Expected response window</span>
+
+              <strong id="slaPreviewText">
+                Select a priority
+              </strong>
+
+              <small id="slaPreviewDescription">
+                The response deadline will be calculated automatically.
+              </small>
+
+            </div>
+
+          </div>
+
+
+          <div class="sla-policy-mini">
+
+            <div>
+              <span class="sla-mini-dot low"></span>
+              <span>Low</span>
+              <strong>48 hrs</strong>
+            </div>
+
+            <div>
+              <span class="sla-mini-dot medium"></span>
+              <span>Medium</span>
+              <strong>24 hrs</strong>
+            </div>
+
+            <div>
+              <span class="sla-mini-dot high"></span>
+              <span>High</span>
+              <strong>12 hrs</strong>
+            </div>
+
+            <div>
+              <span class="sla-mini-dot urgent"></span>
+              <span>Urgent</span>
+              <strong>2 hrs</strong>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FORM MESSAGE
+             ================================================= -->
+        <div
+          id="complaintMessage"
+          class="form-message"
+          role="alert"
+          aria-live="polite"
+        ></div>
+
+
+        <!-- =================================================
+             SUBMIT AREA
+             ================================================= -->
+        <div class="form-submit-area">
+
+          <div class="submit-note">
+
+            <span class="submit-lock">
+              ✓
+            </span>
+
+            <span>
+              Your complaint will receive a unique reference ID.
+            </span>
+
+          </div>
+
+          <div class="submit-actions">
+
+            <a
+              href="dashboard.html"
+              class="btn btn-secondary"
+            >
+              Cancel
+            </a>
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+              id="submitComplaintButton"
+            >
+              Submit complaint
+              <span>→</span>
+            </button>
+
+          </div>
+
+        </div>
+
+      </form>
+
+
+      <!-- =================================================
+           SUCCESS CARD
+           ================================================= -->
+      <section
+        id="complaintSuccess"
+        class="complaint-success hidden"
+      >
+
+        <div class="success-icon">
+          ✓
+        </div>
+
+        <div class="success-content">
+
+          <div class="eyebrow">
+            COMPLAINT RECEIVED
+          </div>
+
+          <h2>Your complaint has been submitted</h2>
+
+          <p>
+            The transport team can now review and track this issue.
+          </p>
+
+          <div class="success-reference">
+
+            <span>Complaint reference</span>
+
+            <strong id="successReference">
+              RW-2026-000
+            </strong>
+
+          </div>
+
+          <div class="success-meta">
+
+            <div>
+              <span>Status</span>
+              <strong>New</strong>
+            </div>
+
+            <div>
+              <span>Priority</span>
+              <strong id="successPriority">—</strong>
+            </div>
+
+            <div>
+              <span>Expected response</span>
+              <strong id="successSla">—</strong>
+            </div>
+
+          </div>
+
+          <div class="success-actions">
+
+            <a
+              href="dashboard.html"
+              class="btn btn-primary"
+            >
+              View dashboard
+            </a>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="newComplaintButton"
+            >
+              Report another issue
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       COMPLAINT DETAIL / DUPLICATE MODAL
+       ===================================================== -->
+  <dialog id="duplicateDialog" class="detail-dialog">
+
+    <div class="detail-modal">
+
+      <div class="detail-header">
+
+        <div>
+          <h2>Similar complaint found</h2>
+
+          <p>
+            Please check before submitting a duplicate report.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          class="modal-close"
+          id="closeDuplicateDialog"
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="detail-content">
+
+        <div id="duplicateDialogContent">
+          <!-- Filled by app.js -->
+        </div>
+
+        <div class="duplicate-dialog-actions">
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="cancelDuplicateSubmit"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="continueDuplicateSubmit"
+          >
+            Submit anyway
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </dialog>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1635 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="description"
+    content="RouteWise - Smart campus transport complaint management system"
+  >
+
+  <meta
+    name="theme-color"
+    content="#4138c2"
+  >
+
+  <title>RouteWise | Smart Campus Transport</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="landing-page" data-page="home">
+
+  <!-- =========================================================
+       NAVIGATION
+       ========================================================= -->
+
+  <header class="site-header">
+
+    <div class="container nav-container">
+
+      <!-- Brand -->
+      <a href="index.html" class="brand" aria-label="RouteWise Home">
+
+        <span class="brand-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+
+        <span class="brand-text">
+          <strong>RouteWise</strong>
+          <small>Campus Mobility</small>
+        </span>
+
+      </a>
+
+
+      <!-- Desktop Navigation -->
+      <nav class="main-nav" aria-label="Main navigation">
+
+        <a href="#home">Home</a>
+
+        <a href="#how-it-works">How it works</a>
+
+        <a href="#features">Features</a>
+
+        <a href="#about">About</a>
+
+      </nav>
+
+
+      <!-- Navigation Actions -->
+      <div class="nav-actions">
+
+        <a class="btn btn-ghost" href="admin-login.html">
+          Admin sign in
+        </a>
+
+        <button
+          type="button"
+          class="btn btn-ghost"
+          data-open-auth="login"
+        >
+          Sign in
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-open-auth="register"
+        >
+          Create account
+        </button>
+
+      </div>
+
+
+      <!-- Mobile Menu Button -->
+      <button
+        type="button"
+        class="mobile-menu-btn"
+        id="mobileMenuBtn"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================================================
+       MOBILE NAVIGATION
+       ========================================================= -->
+
+  <div class="mobile-nav" id="mobileNav">
+
+    <a href="#home">Home</a>
+
+    <a href="#how-it-works">How it works</a>
+
+    <a href="#features">Features</a>
+
+    <a href="#about">About</a>
+
+    <button
+      type="button"
+      class="btn btn-ghost"
+      data-open-auth="login"
+    >
+      Sign in
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-open-auth="register"
+    >
+      Create account
+    </button>
+
+    <a class="btn btn-ghost" href="admin-login.html">
+      Admin sign in
+    </a>
+
+  </div>
+
+
+  <!-- =========================================================
+       HERO SECTION
+       ========================================================= -->
+
+  <main id="home">
+
+    <section class="hero-section">
+
+      <div class="container hero-grid">
+
+        <!-- Hero Content -->
+        <div class="hero-content">
+
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Smart Campus Transport
+          </div>
+
+
+          <h1>
+            Report transport issues.
+            <span>Move campus forward.</span>
+          </h1>
+
+
+          <p class="hero-description">
+            RouteWise gives students a simple way to report transport
+            problems and gives administrators the intelligence to
+            resolve them faster.
+          </p>
+
+
+          <!-- Hero Actions -->
+          <div class="hero-actions">
+
+            <button
+              type="button"
+              class="btn btn-primary btn-large"
+              data-open-auth="register"
+            >
+              Create student account
+              <span aria-hidden="true">→</span>
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-outline btn-large"
+              data-open-auth="login"
+            >
+              Sign in
+            </button>
+
+            <a
+              class="btn btn-ghost btn-large"
+              href="admin-login.html"
+            >
+              Admin sign in
+            </a>
+
+          </div>
+
+
+          <!-- Trust Points -->
+          <div class="hero-trust">
+
+            <div class="trust-item">
+              <span class="trust-icon">✓</span>
+              <span>Quick complaint reporting</span>
+            </div>
+
+            <div class="trust-item">
+              <span class="trust-icon">✓</span>
+              <span>Real-time status tracking</span>
+            </div>
+
+            <div class="trust-item">
+              <span class="trust-icon">✓</span>
+              <span>Smart issue prioritisation</span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             HERO DASHBOARD PREVIEW
+             ===================================================== -->
+
+        <div class="hero-visual">
+
+          <div class="dashboard-preview">
+
+            <!-- Preview Header -->
+            <div class="preview-header">
+
+              <div>
+
+                <span class="preview-label">
+                  STUDENT PORTAL
+                </span>
+
+                <strong>
+                  Transport overview
+                </strong>
+
+              </div>
+
+              <span class="preview-status">
+                ● Live
+              </span>
+
+            </div>
+
+
+            <!-- Route Status -->
+            <div class="preview-route">
+
+              <div class="route-icon">
+                CB
+              </div>
+
+              <div class="route-info">
+
+                <strong>
+                  CB-205
+                </strong>
+
+                <span>
+                  Main Gate Express
+                </span>
+
+              </div>
+
+              <div class="route-time">
+
+                <strong>
+                  08:35
+                </strong>
+
+                <span>
+                  On time
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <!-- Preview Metrics -->
+            <div class="preview-metrics">
+
+              <div class="preview-metric">
+
+                <span class="metric-number">
+                  03
+                </span>
+
+                <span class="metric-label">
+                  Open
+                </span>
+
+              </div>
+
+
+              <div class="preview-metric">
+
+                <span class="metric-number">
+                  02
+                </span>
+
+                <span class="metric-label">
+                  In review
+                </span>
+
+              </div>
+
+
+              <div class="preview-metric">
+
+                <span class="metric-number">
+                  12
+                </span>
+
+                <span class="metric-label">
+                  Resolved
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <!-- Preview Complaint -->
+            <div class="preview-complaint">
+
+              <div class="preview-complaint-top">
+
+                <span class="status-pill review">
+                  In review
+                </span>
+
+                <span class="priority high">
+                  High
+                </span>
+
+              </div>
+
+              <strong>
+                Bus overcrowding during morning...
+              </strong>
+
+              <span>
+                CB-205 · Main Gate
+              </span>
+
+            </div>
+
+
+            <!-- Preview Complaint 2 -->
+            <div class="preview-complaint">
+
+              <div class="preview-complaint-top">
+
+                <span class="status-pill resolved">
+                  Resolved
+                </span>
+
+                <span class="priority medium">
+                  Medium
+                </span>
+
+              </div>
+
+              <strong>
+                Route timing issue
+              </strong>
+
+              <span>
+                CB-314 · East Hostel Loop
+              </span>
+
+            </div>
+
+
+            <!-- Intelligence Badge -->
+            <div class="preview-ai">
+
+              <div class="preview-ai-icon">
+                ✦
+              </div>
+
+              <div>
+
+                <strong>
+                  Smart insight
+                </strong>
+
+                <span>
+                  Morning overcrowding detected
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- Floating SLA Card -->
+          <div class="floating-card floating-sla">
+
+            <span class="floating-icon">
+              ✓
+            </span>
+
+            <div>
+
+              <strong>
+                94% SLA
+              </strong>
+
+              <small>
+                complaints on track
+              </small>
+
+            </div>
+
+          </div>
+
+
+          <!-- Floating Route Card -->
+          <div class="floating-card floating-route">
+
+            <span class="floating-icon">
+              ↗
+            </span>
+
+            <div>
+
+              <strong>
+                Route health
+              </strong>
+
+              <small>
+                CB-205 · 91%
+              </small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         PROBLEM / VALUE SECTION
+         ========================================================= -->
+
+    <section class="value-section" id="about">
+
+      <div class="container">
+
+        <div class="section-heading centered">
+
+          <span class="eyebrow">
+            WHY ROUTEWISE
+          </span>
+
+          <h2>
+            From scattered complaints to
+            <span>actionable decisions.</span>
+          </h2>
+
+          <p>
+            RouteWise connects students, transport teams and
+            administrators through one structured complaint system.
+          </p>
+
+        </div>
+
+
+        <div class="value-grid">
+
+          <article class="value-card">
+
+            <div class="value-number">
+              01
+            </div>
+
+            <h3>
+              Students report
+            </h3>
+
+            <p>
+              Submit transport problems with route, location,
+              priority, description and optional photo evidence.
+            </p>
+
+          </article>
+
+
+          <article class="value-card">
+
+            <div class="value-number">
+              02
+            </div>
+
+            <h3>
+              RouteWise analyses
+            </h3>
+
+            <p>
+              Complaints are classified, prioritised and checked
+              for duplicate or recurring issues.
+            </p>
+
+          </article>
+
+
+          <article class="value-card">
+
+            <div class="value-number">
+              03
+            </div>
+
+            <h3>
+              Teams respond
+            </h3>
+
+            <p>
+              Administrators assign issues, monitor SLA deadlines
+              and record resolution actions.
+            </p>
+
+          </article>
+
+
+          <article class="value-card">
+
+            <div class="value-number">
+              04
+            </div>
+
+            <h3>
+              Campus improves
+            </h3>
+
+            <p>
+              Route health, hotspots and complaint trends reveal
+              where transport improvements are needed.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         HOW IT WORKS
+         ========================================================= -->
+
+    <section class="how-section" id="how-it-works">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <span class="eyebrow">
+            SIMPLE WORKFLOW
+          </span>
+
+          <h2>
+            One complaint.
+            <span>A clear journey to resolution.</span>
+          </h2>
+
+        </div>
+
+
+        <div class="workflow">
+
+          <div class="workflow-step">
+
+            <div class="workflow-icon">
+              01
+            </div>
+
+            <div>
+
+              <h3>
+                Report
+              </h3>
+
+              <p>
+                Tell us what happened and where it happened.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="workflow-line"></div>
+
+
+          <div class="workflow-step">
+
+            <div class="workflow-icon">
+              02
+            </div>
+
+            <div>
+
+              <h3>
+                Analyse
+              </h3>
+
+              <p>
+                RouteWise identifies category, priority and patterns.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="workflow-line"></div>
+
+
+          <div class="workflow-step">
+
+            <div class="workflow-icon">
+              03
+            </div>
+
+            <div>
+
+              <h3>
+                Assign
+              </h3>
+
+              <p>
+                The transport team receives and works on the issue.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="workflow-line"></div>
+
+
+          <div class="workflow-step">
+
+            <div class="workflow-icon">
+              04
+            </div>
+
+            <div>
+
+              <h3>
+                Resolve
+              </h3>
+
+              <p>
+                Students receive updates until the complaint is resolved.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FEATURES
+         ========================================================= -->
+
+    <section class="features-section" id="features">
+
+      <div class="container">
+
+        <div class="section-heading centered">
+
+          <span class="eyebrow">
+            PLATFORM CAPABILITIES
+          </span>
+
+          <h2>
+            Built for smarter
+            <span>campus mobility.</span>
+          </h2>
+
+          <p>
+            Everything students and transport administrators need
+            to manage recurring campus transport problems.
+          </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+          <!-- Feature 1 -->
+          <article class="feature-card">
+
+            <div class="feature-icon">
+              +
+            </div>
+
+            <h3>
+              Smart Complaint Reporting
+            </h3>
+
+            <p>
+              Structured reporting with route, location, incident
+              time, description and photo evidence.
+            </p>
+
+          </article>
+
+
+          <!-- Feature 2 -->
+          <article class="feature-card">
+
+            <div class="feature-icon">
+              AI
+            </div>
+
+            <h3>
+              Intelligent Classification
+            </h3>
+
+            <p>
+              Complaint text can be analysed to recommend a category
+              and priority before submission.
+            </p>
+
+          </article>
+
+
+          <!-- Feature 3 -->
+          <article class="feature-card">
+
+            <div class="feature-icon">
+              !
+            </div>
+
+            <h3>
+              Priority & SLA
+            </h3>
+
+            <p>
+              Critical issues receive shorter response windows and
+              overdue complaints are automatically escalated.
+            </p>
+
+          </article>
+
+
+          <!-- Feature 4 -->
+          <article class="feature-card">
+
+            <div class="feature-icon">
+              ↔
+            </div>
+
+            <h3>
+              Live Status Tracking
+            </h3>
+
+            <p>
+              Follow the complete complaint journey from submission
+              to review and final resolution.
+            </p>
+
+          </article>
+
+
+          <!-- Feature 5 -->
+          <article class="feature-card">
+
+            <div class="feature-icon">
+              ◉
+            </div>
+
+            <h3>
+              Duplicate Detection
+            </h3>
+
+            <p>
+              Similar complaints can be identified to reduce duplicate
+              work and highlight recurring problems.
+            </p>
+
+          </article>
+
+
+          <!-- Feature 6 -->
+          <article class="feature-card">
+
+            <div class="feature-icon">
+              ↗
+            </div>
+
+            <h3>
+              Team Assignment
+            </h3>
+
+            <p>
+              Administrators can assign complaints to the appropriate
+              transport team and track ownership.
+            </p>
+
+          </article>
+
+
+          <!-- Feature 7 -->
+          <article class="feature-card">
+
+            <div class="feature-icon">
+              #
+            </div>
+
+            <h3>
+              Route Health
+            </h3>
+
+            <p>
+              Route-level health scores expose problem areas and
+              frequently reported transport services.
+            </p>
+
+          </article>
+
+
+          <!-- Feature 8 -->
+          <article class="feature-card">
+
+            <div class="feature-icon">
+              ◒
+            </div>
+
+            <h3>
+              Analytics & Hotspots
+            </h3>
+
+            <p>
+              Visual insights show complaint categories, locations,
+              priorities, trends and SLA performance.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         ADMIN INTELLIGENCE SECTION
+         ========================================================= -->
+
+    <section class="intelligence-section">
+
+      <div class="container intelligence-grid">
+
+        <div class="intelligence-content">
+
+          <span class="eyebrow">
+            FOR TRANSPORT ADMINISTRATORS
+          </span>
+
+          <h2>
+            See the problem
+            <span>before it becomes bigger.</span>
+          </h2>
+
+          <p>
+            Instead of manually reading every complaint, administrators
+            can use RouteWise analytics to identify recurring routes,
+            locations and priority issues.
+          </p>
+
+
+          <ul class="check-list">
+
+            <li>
+              <span>✓</span>
+              Automatic SLA monitoring
+            </li>
+
+            <li>
+              <span>✓</span>
+              Overdue complaint escalation
+            </li>
+
+            <li>
+              <span>✓</span>
+              Route and location hotspots
+            </li>
+
+            <li>
+              <span>✓</span>
+              Priority-based complaint queue
+            </li>
+
+            <li>
+              <span>✓</span>
+              Resolution performance tracking
+            </li>
+
+          </ul>
+
+
+          <a
+            href="admin.html"
+            class="btn btn-primary"
+          >
+            View admin workspace
+            <span aria-hidden="true">→</span>
+          </a>
+
+        </div>
+
+
+        <!-- Analytics Preview -->
+        <div class="analytics-preview">
+
+          <div class="analytics-header">
+
+            <div>
+
+              <span>
+                TRANSPORT INTELLIGENCE
+              </span>
+
+              <strong>
+                Weekly overview
+              </strong>
+
+            </div>
+
+            <span class="analytics-live">
+              Live data
+            </span>
+
+          </div>
+
+
+          <div class="analytics-stats">
+
+            <div>
+
+              <span>
+                Total complaints
+              </span>
+
+              <strong>
+                47
+              </strong>
+
+            </div>
+
+            <div>
+
+              <span>
+                Resolution rate
+              </span>
+
+              <strong>
+                86%
+              </strong>
+
+            </div>
+
+            <div>
+
+              <span>
+                SLA compliance
+              </span>
+
+              <strong>
+                94%
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="analytics-bars">
+
+            <div class="bar-row">
+
+              <div class="bar-label">
+                <span>Overcrowding</span>
+                <strong>18</strong>
+              </div>
+
+              <div class="bar">
+                <span style="width: 82%;"></span>
+              </div>
+
+            </div>
+
+
+            <div class="bar-row">
+
+              <div class="bar-label">
+                <span>Late arrival</span>
+                <strong>12</strong>
+              </div>
+
+              <div class="bar">
+                <span style="width: 60%;"></span>
+              </div>
+
+            </div>
+
+
+            <div class="bar-row">
+
+              <div class="bar-label">
+                <span>Route issue</span>
+                <strong>09</strong>
+              </div>
+
+              <div class="bar">
+                <span style="width: 45%;"></span>
+              </div>
+
+            </div>
+
+
+            <div class="bar-row">
+
+              <div class="bar-label">
+                <span>Safety concern</span>
+                <strong>05</strong>
+              </div>
+
+              <div class="bar">
+                <span style="width: 28%;"></span>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="hotspot-preview">
+
+            <span class="hotspot-dot"></span>
+
+            <div>
+
+              <strong>
+                Current hotspot
+              </strong>
+
+              <span>
+                Main Gate · 11 complaints
+              </span>
+
+            </div>
+
+            <span class="hotspot-arrow">
+              →
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CTA
+         ========================================================= -->
+
+    <section class="cta-section">
+
+      <div class="container">
+
+        <div class="cta-card">
+
+          <div>
+
+            <span class="eyebrow">
+              READY TO GET STARTED?
+            </span>
+
+            <h2>
+              Make every campus ride better.
+            </h2>
+
+            <p>
+              Report an issue today and help your transport team
+              understand what students experience.
+            </p>
+
+          </div>
+
+
+          <div class="cta-actions">
+
+            <button
+              type="button"
+              class="btn btn-white btn-large"
+              data-open-auth="register"
+            >
+              Create account
+              <span aria-hidden="true">→</span>
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-outline-light"
+              data-open-auth="login"
+            >
+              I already have an account
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+
+  <footer class="site-footer" id="footer">
+
+    <div class="container footer-grid">
+
+      <div class="footer-brand">
+
+        <a href="index.html" class="brand">
+
+          <span class="brand-mark" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+
+          <span class="brand-text">
+            <strong>RouteWise</strong>
+            <small>Campus Mobility</small>
+          </span>
+
+        </a>
+
+        <p>
+          A smarter way to report, manage and improve campus transport.
+        </p>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <strong>
+          Platform
+        </strong>
+
+        <a href="#features">
+          Features
+        </a>
+
+        <a href="#how-it-works">
+          How it works
+        </a>
+
+        <a href="admin.html">
+          Admin workspace
+        </a>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <strong>
+          Account
+        </strong>
+
+        <button
+          type="button"
+          data-open-auth="login"
+        >
+          Sign in
+        </button>
+
+        <button
+          type="button"
+          data-open-auth="register"
+        >
+          Create account
+        </button>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <strong>
+          RouteWise
+        </strong>
+
+        <span>
+          Smart campus mobility
+        </span>
+
+        <span>
+          Complaint intelligence
+        </span>
+
+        <span>
+          Student-first design
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="container footer-bottom">
+
+      <span>
+        © 2026 RouteWise. Prototype for academic/hackathon use.
+      </span>
+
+      <span>
+        Built for smarter campus transportation.
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================================================
+       AUTHENTICATION MODAL
+       ========================================================= -->
+
+  <dialog
+    class="auth-dialog"
+    id="authDialog"
+    aria-labelledby="authDialogTitle"
+  >
+
+    <div class="auth-modal">
+
+      <!-- Modal Header -->
+      <div class="auth-header">
+
+        <div>
+
+          <span class="eyebrow">
+            ROUTEWISE ACCOUNT
+          </span>
+
+          <h2 id="authDialogTitle">
+            Welcome back
+          </h2>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="modal-close"
+          id="closeAuth"
+          aria-label="Close authentication dialog"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <!-- =====================================================
+           LOGIN PANEL
+           ===================================================== -->
+
+      <section
+        id="loginPanel"
+        class="auth-panel"
+      >
+
+        <p class="auth-subtitle">
+          Sign in to track complaints and report transport issues.
+        </p>
+
+
+        <form
+          id="loginForm"
+          novalidate
+        >
+
+          <div class="form-group">
+
+            <label for="loginEmail">
+              College email
+            </label>
+
+            <input
+              type="email"
+              id="loginEmail"
+              name="email"
+              placeholder="yourname@college.edu"
+              autocomplete="email"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="loginPassword">
+              Password
+            </label>
+
+            <input
+              type="password"
+              id="loginPassword"
+              name="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              minlength="6"
+              required
+            >
+
+          </div>
+
+
+          <div class="auth-options">
+
+            <label class="checkbox-label">
+
+              <input
+                type="checkbox"
+                id="rememberLogin"
+                name="remember"
+              >
+
+              <span>
+                Remember me
+              </span>
+
+            </label>
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="btn btn-primary btn-full"
+          >
+            Sign in
+            <span aria-hidden="true">→</span>
+          </button>
+
+        </form>
+
+
+        <div
+          class="auth-divider"
+          aria-hidden="true"
+        >
+          <span>or</span>
+        </div>
+
+
+        <p class="auth-switch">
+
+          New to RouteWise?
+
+          <button
+            type="button"
+            data-auth-switch="register"
+          >
+            Create an account
+          </button>
+
+        </p>
+
+      </section>
+
+
+      <!-- =====================================================
+           REGISTER PANEL
+           ===================================================== -->
+
+      <section
+        id="registerPanel"
+        class="auth-panel hidden"
+      >
+
+        <p class="auth-subtitle">
+          Create your student account to report and track transport issues.
+        </p>
+
+
+        <form
+          id="registerForm"
+          novalidate
+        >
+
+          <div class="form-group">
+
+            <label for="registerName">
+              Full name
+            </label>
+
+            <input
+              type="text"
+              id="registerName"
+              name="name"
+              placeholder="Enter your full name"
+              autocomplete="name"
+              minlength="2"
+              maxlength="80"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="registerEmail">
+              College email
+            </label>
+
+            <input
+              type="email"
+              id="registerEmail"
+              name="email"
+              placeholder="yourname@college.edu"
+              autocomplete="email"
+              required
+            >
+
+            <small class="field-hint">
+              Use your active college email address.
+            </small>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="registerPhone">
+              Phone number
+            </label>
+
+            <input
+              type="tel"
+              id="registerPhone"
+              name="phone"
+              placeholder="10-digit mobile number"
+              autocomplete="tel"
+              inputmode="numeric"
+              maxlength="10"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="registerPassword">
+              Password
+            </label>
+
+            <input
+              type="password"
+              id="registerPassword"
+              name="password"
+              placeholder="Create a password"
+              autocomplete="new-password"
+              minlength="6"
+              required
+            >
+
+            <small class="field-hint">
+              Minimum 6 characters.
+            </small>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="registerPasswordConfirm">
+              Confirm password
+            </label>
+
+            <input
+              type="password"
+              id="registerPasswordConfirm"
+              name="passwordConfirm"
+              placeholder="Re-enter your password"
+              autocomplete="new-password"
+              minlength="6"
+              required
+            >
+
+          </div>
+
+
+          <label class="checkbox-label terms-checkbox">
+
+            <input
+              type="checkbox"
+              id="acceptTerms"
+              name="terms"
+              required
+            >
+
+            <span>
+              I agree to use RouteWise responsibly and provide
+              accurate complaint information.
+            </span>
+
+          </label>
+
+
+          <button
+            type="submit"
+            class="btn btn-primary btn-full"
+          >
+            Create student account
+            <span aria-hidden="true">→</span>
+          </button>
+
+        </form>
+
+
+        <p class="auth-switch">
+
+          Already have an account?
+
+          <button
+            type="button"
+            data-auth-switch="login"
+          >
+            Sign in
+          </button>
+
+        </p>
+
+      </section>
+
+
+      <!-- =====================================================
+           AUTH MESSAGE
+           ===================================================== -->
+
+      <div
+        id="authMessage"
+        class="form-message"
+        role="alert"
+        aria-live="polite"
+      ></div>
+
+    </div>
+
+  </dialog>
+
+
+  <!-- =========================================================
+       ACCESSIBILITY / NOSCRIPT MESSAGE
+       ========================================================= -->
+
+  <noscript>
+
+    <div class="noscript-message">
+      RouteWise requires JavaScript for account authentication
+      and complaint management features.
+    </div>
+
+  </noscript>
+
+
+  <!-- Main application logic -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
