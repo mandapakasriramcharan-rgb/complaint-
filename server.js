@@ -115,9 +115,14 @@ app.post('/api/auth/admin-login', (req, res) => {
   }
 
   const data = readData();
+  const legacyAdminEmails = ['host@gmail.com', 'admin@routewise.com'];
   const user = data.users.find(item =>
     (item.isHost === true || item.role === 'admin') &&
-    (normalizeAdminIdentity(item.email) === email || normalizeAdminIdentity(item.username) === email)
+    (
+      normalizeAdminIdentity(item.email) === email ||
+      normalizeAdminIdentity(item.username) === email ||
+      (item.isHost === true && legacyAdminEmails.includes(email))
+    )
   );
 
   if (!user || user.role !== 'admin' || user.password !== password) {

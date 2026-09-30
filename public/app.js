@@ -534,14 +534,23 @@ function currentUser() {
 
   const users = Store.users();
 
-  return (
+  const storedUser =
     users.find(
       user =>
         user.id === session.userId ||
         normalize(user.email) ===
         normalize(session.email)
-    ) || session
-  );
+    );
+
+  if (storedUser) {
+    return storedUser;
+  }
+
+  return {
+    ...session,
+    id: session.id || session.userId,
+    userId: session.userId || session.id
+  };
 }
 
 
