@@ -355,7 +355,7 @@ function ensureHostAccount() {
     hostUser.username = "admin@routewise.com";
     hostUser.email = "admin@routewise.com";
     hostUser.password = "admin123";
-    Store.set(RW_CONFIG.storage.users, users);
+    Store.setLocal(RW_CONFIG.storage.users, users);
     return hostUser;
   }
 
@@ -372,7 +372,7 @@ function ensureHostAccount() {
   };
 
   users.push(defaultHost);
-  Store.set(RW_CONFIG.storage.users, users);
+  Store.setLocal(RW_CONFIG.storage.users, users);
   return defaultHost;
 }
 
@@ -614,36 +614,44 @@ async function handleLogin(event) {
     return;
   }
 
-  const users = Store.users();
-  const user = users.find(item =>
-    normalize(item.email) === email ||
-    normalize(item.username) === email
-  );
+  try {
+    const response = await apiFetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+    const result = await response.json().catch(() => ({}));
 
-  if (!user) {
-    setMessage(message, "Account not found. Please register first.", "error");
-    return;
+    if (!response.ok || !result.user) {
+      setMessage(message, result.error || "Invalid email or password.", "error");
+      return;
+    }
+
+    const user = result.user;
+    const users = Store.users().filter(item => item.id !== user.id);
+    Store.setLocal(RW_CONFIG.storage.users, [user, ...users]);
+
+    const sessionSaved = Store.setSession({
+      userId: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role || "student",
+      authenticated: true,
+      loginAt: new Date().toISOString()
+    });
+
+    if (!sessionSaved) {
+      setMessage(message, "Your browser could not save the login session. Enable site storage, then try again.", "error");
+      return;
+    }
+
+    setMessage(message, "Login successful. Opening dashboard...", "success");
+    setTimeout(() => {
+      window.location.href = user.role === "admin" ? "admin.html" : "dashboard.html";
+    }, 500);
+  } catch (error) {
+    setMessage(message, error.message || "Could not reach the shared server. Try again when it is available.", "error");
   }
-
-  if (user.password && user.password !== password) {
-    setMessage(message, "Incorrect password.", "error");
-    return;
-  }
-
-  const session = {
-    userId: user.id,
-    name: user.name,
-    email: user.email,
-    role: user.role || "student",
-    authenticated: true,
-    loginAt: new Date().toISOString()
-  };
-
-  Store.setSession(session);
-  setMessage(message, "Login successful. Opening dashboard...", "success");
-  setTimeout(() => {
-    window.location.href = user.role === "admin" ? "admin.html" : "dashboard.html";
-  }, 500);
 }
 
 
@@ -652,9 +660,14 @@ function handleAdminLogin(event) {
   event.preventDefault();
 
   const form = event.currentTarget;
-  const email = safeText($("#adminLoginEmail", form)?.value).toLowerCase() || "admin@routewise.com";
-  const password = safeText($("#adminLoginPassword", form)?.value) || "admin123";
+  const email = safeText($("#adminLoginEmail", form)?.value).toLowerCase();
+  const password = safeText($("#adminLoginPassword", form)?.value);
   const message = byId("adminLoginMessage");
+
+  if (!email || !password) {
+    setMessage(message, "Enter your admin email and password.", "error");
+    return;
+  }
 
   apiFetch("/api/auth/admin-login", {
     method: "POST",

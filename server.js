@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3000;
 const DATA_FILE = path.join(__dirname, 'data.json');
 const SUPABASE_URL = process.env.SUPABASE_URL || 'https://gxuxtfmczgrvlhpghpor.supabase.co';
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY || '';
+const SUPABASE_PUBLISHABLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_ymuTXZwMUdZuUo0Moh_mSQ_6bEDgDFK';
 
 const supabase = SUPABASE_SERVICE_KEY
   ? createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY)
@@ -106,10 +107,20 @@ app.get('/api/complaints', (req, res) => {
 });
 
 app.post('/api/auth/admin-login', (req, res) => {
-  const data = readData();
-  const user = data.users.find(item => item.isHost === true || item.role === 'admin') || data.users[0];
+  const email = normalizeAdminIdentity(req.body?.email);
+  const password = String(req.body?.password || '');
 
-  if (!user || user.role !== 'admin') {
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Admin email and password are required.' });
+  }
+
+  const data = readData();
+  const user = data.users.find(item =>
+    (item.isHost === true || item.role === 'admin') &&
+    (normalizeAdminIdentity(item.email) === email || normalizeAdminIdentity(item.username) === email)
+  );
+
+  if (!user || user.role !== 'admin' || user.password !== password) {
     return res.status(401).json({ error: 'Invalid admin credentials.' });
   }
 
@@ -121,6 +132,59 @@ app.post('/api/auth/admin-login', (req, res) => {
       role: user.role
     }
   });
+});
+
+app.post('/api/auth/login', async (req, res) => {
+  const email = String(req.body?.email || '').trim().toLowerCase();
+  const password = String(req.body?.password || '');
+
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Email and password are required.' });
+  }
+
+  if (supabase) {
+    try {
+      const authClient = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+        auth: { autoRefreshToken: false, persistSession: false, detectSessionInUrl: false }
+      });
+      const { data, error } = await authClient.auth.signInWithPassword({ email, password });
+
+      if (!error && data.user) {
+        const metadata = data.user.user_metadata || {};
+        return res.json({
+          user: {
+            id: data.user.id,
+            name: metadata.name || email.split('@')[0],
+            email: data.user.email,
+            phone: metadata.phone || '',
+            role: metadata.role || 'student',
+            adminAccessStatus: metadata.adminAccessStatus || 'pending',
+            createdAt: data.user.created_at
+          }
+        });
+      }
+    } catch (error) {
+      console.error('Supabase sign-in error:', error);
+      return res.status(503).json({ error: 'Sign-in is temporarily unavailable. Please try again.' });
+    }
+  } else if (process.env.VERCEL) {
+    return res.status(503).json({ error: 'Account storage is not configured. Add SUPABASE_SERVICE_KEY to the Vercel project settings.' });
+  }
+
+  try {
+    const data = readData();
+    const user = data.users.find(item => item.email?.trim().toLowerCase() === email);
+
+    if (!user || user.password !== password) {
+      return res.status(401).json({ error: 'Invalid email or password.' });
+    }
+
+    const { password: discardedPassword, ...publicUser } = user;
+    return res.json({ user: publicUser });
+  } catch (error) {
+    console.error('Local sign-in error:', error);
+    return res.status(503).json({ error: 'Sign-in is temporarily unavailable. Please try again.' });
+  }
 });
 
 app.put('/api/auth/admin-access', (req, res) => {
@@ -156,22 +220,77 @@ app.put('/api/auth/admin-access', (req, res) => {
   res.json({ success: true, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
 });
 
-app.post('/api/users', (req, res) => {
-  const data = readData();
+app.post('/api/users', async (req, res) => {
   const user = req.body;
 
   if (!user || !user.email || !user.password) {
     return res.status(400).json({ error: 'Invalid user payload.' });
   }
 
-  const exists = data.users.some(item => item.email?.toLowerCase() === user.email.toLowerCase());
-  if (exists) {
-    return res.status(409).json({ error: 'User already exists.' });
+  const email = String(user.email).trim().toLowerCase();
+  const name = String(user.name || '').trim();
+  const password = String(user.password);
+
+  if (!name || password.length < 6) {
+    return res.status(400).json({ error: 'Name and a password of at least 6 characters are required.' });
   }
 
-  data.users.push(user);
-  writeData(data);
-  res.status(201).json(user);
+  if (supabase) {
+    try {
+      const { data, error } = await supabase.auth.admin.createUser({
+        email,
+        password,
+        email_confirm: true,
+        user_metadata: {
+          name,
+          phone: String(user.phone || ''),
+          role: 'student',
+          adminAccessStatus: 'pending'
+        }
+      });
+
+      if (error) {
+        const duplicate = /already (registered|exists)|email_exists/i.test(error.message || '');
+        return res.status(duplicate ? 409 : 400).json({
+          error: duplicate ? 'User already exists.' : 'Could not create the account. Check the email and try again.'
+        });
+      }
+
+      return res.status(201).json({
+        id: data.user.id,
+        name,
+        email: data.user.email,
+        phone: String(user.phone || ''),
+        role: 'student',
+        adminAccessStatus: 'pending',
+        createdAt: data.user.created_at
+      });
+    } catch (error) {
+      console.error('Supabase account creation error:', error);
+      return res.status(503).json({ error: 'Account storage is temporarily unavailable. Please try again.' });
+    }
+  }
+
+  if (process.env.VERCEL) {
+    return res.status(503).json({ error: 'Account storage is not configured. Add SUPABASE_SERVICE_KEY to the Vercel project settings.' });
+  }
+
+  try {
+    const data = readData();
+    const exists = data.users.some(item => item.email?.trim().toLowerCase() === email);
+    if (exists) {
+      return res.status(409).json({ error: 'User already exists.' });
+    }
+
+    const savedUser = { ...user, email, name };
+    data.users.push(savedUser);
+    writeData(data);
+    const { password: discardedPassword, ...publicUser } = savedUser;
+    return res.status(201).json(publicUser);
+  } catch (error) {
+    console.error('Local account creation error:', error);
+    return res.status(500).json({ error: 'Could not save the account. Please try again.' });
+  }
 });
 app.post('/api/complaints', async (req, res) => {
   const data = readData();
