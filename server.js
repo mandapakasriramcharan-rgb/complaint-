@@ -243,7 +243,11 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`RouteWise server running at http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`RouteWise server running at http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
 
