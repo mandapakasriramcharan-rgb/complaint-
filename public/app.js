@@ -7,19 +7,6 @@
 "use strict";
 
 /* =========================================================
-   SUPABASE CONFIGURATION
-   ========================================================= */
-
-const SUPABASE_URL = "https://gxuxtfmczgrvlhpghpor.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ymuTXZwMUdZuUo0Moh_mSQ_6bEDgDFK";
-
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
-);
-
-
-/* =========================================================
    CONFIGURATION
    ========================================================= */
 
@@ -96,6 +83,23 @@ const byId = (id) =>
 const safeText = (value) =>
   String(value ?? "").trim();
 
+async function apiFetch(url, options = {}) {
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), 10000);
+
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } catch (error) {
+    if (error.name === "AbortError") {
+      throw new Error("The server took too long to respond. Check your connection before trying again.");
+    }
+
+    throw error;
+  } finally {
+    window.clearTimeout(timeoutId);
+  }
+}
+
 
 /* =========================================================
    STORAGE
@@ -111,7 +115,7 @@ const Store = {
 
   async syncFromServer() {
     try {
-      const response = await fetch("/api/init");
+      const response = await apiFetch("/api/init");
 
       if (!response.ok) {
         return false;
@@ -155,7 +159,7 @@ const Store = {
     }
 
     try {
-      const response = await fetch(`/api/${endpoint}`, {
+      const response = await apiFetch(`/api/${endpoint}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -175,7 +179,7 @@ const Store = {
   },
 
   async createOnServer(resource, value) {
-    const response = await fetch(`/api/${resource}`, {
+    const response = await apiFetch(`/api/${resource}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -652,7 +656,7 @@ function handleAdminLogin(event) {
   const password = safeText($("#adminLoginPassword", form)?.value) || "admin123";
   const message = byId("adminLoginMessage");
 
-  fetch("/api/auth/admin-login", {
+  apiFetch("/api/auth/admin-login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
@@ -4651,7 +4655,7 @@ async function handleAdminAccessDecision(event) {
   button.disabled = true;
 
   try {
-    const response = await fetch("/api/auth/admin-access", {
+    const response = await apiFetch("/api/auth/admin-access", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -6925,9 +6929,8 @@ function loadSampleData() {
 
 document.addEventListener(
   "DOMContentLoaded",
-  async () => {
+  () => {
 
-    await Store.syncFromServer();
     ensureHostAccount();
 
     initTheme();
@@ -6937,6 +6940,8 @@ document.addEventListener(
     initComplaintPage();
     initDashboard();
     initAdmin();
+
+    Store.syncFromServer();
 
   }
 );

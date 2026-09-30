@@ -215,7 +215,8 @@ app.post('/api/complaints', async (req, res) => {
           priority: complaint.priority || 'Medium',
           route: complaint.route || '',
           location: complaint.location || ''
-        });
+        })
+        .abortSignal(AbortSignal.timeout(8000));
 
       if (error) {
         console.error('Supabase complaint insert error:', error);
