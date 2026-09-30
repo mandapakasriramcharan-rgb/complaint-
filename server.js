@@ -19,7 +19,7 @@ if (!supabase) {
 }
 
 app.use(express.json({ limit: '10mb' }));
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'public')));
 
 function ensureDataFile() {
   if (!fs.existsSync(DATA_FILE)) {
@@ -240,7 +240,7 @@ app.post('/api/complaints', async (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 if (require.main === module) {
