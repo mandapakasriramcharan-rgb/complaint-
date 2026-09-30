@@ -344,7 +344,10 @@ app.post('/api/complaints', async (req, res) => {
 
       if (error) {
         console.error('Supabase complaint insert error:', error);
+        return res.status(502).json({ error: 'Could not save the complaint to the shared database.' });
       }
+
+      return res.status(201).json(complaint);
     } else {
       console.warn('Supabase not configured: complaint saved locally only.');
     }
